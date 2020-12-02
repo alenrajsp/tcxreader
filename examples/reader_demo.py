@@ -1,19 +1,20 @@
 """
 Simple example of using the TCX reader!
 """
-from tcxreader.tcxreader import TCXReader, TCXTrackPoint
+from tcxreader.tcxreader import TCXReader, TCXTrackPoint, TCXExercise
 
 tcx_reader = TCXReader()
 file_location = '../example_data/15.tcx'
 
-data: TCXTrackPoint = tcx_reader.read(file_location)
+data: TCXExercise = tcx_reader.read(file_location)
 
 print("Output")
-print(str(data[0]))
+print(str(data.trackpoints[0]))
 
 """
 Example output:
-data[n] = {TCXTrackPoint}
+
+= {TCXTrackPoint}
 	 TPX_speed = {float} 5.011000156402588
 	 cadence = {float} 80
 	 distance = {float} 514.0499877929688

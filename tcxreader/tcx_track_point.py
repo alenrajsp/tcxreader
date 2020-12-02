@@ -9,7 +9,7 @@ class TCXTrackPoint(object):
         :param distance: Total distance traveled at the current trackpoint
         :param hr_value: Heart rate value at the trackpoint
         :param cadence: Cadence at the trackpoint
-        :param TPX_speed: Current speed (extension)
+        :param TPX_speed: Current speed (extension), not necessarily OK!
         :param watts: Watts usage at the trackpoint
         '''
         self.longitude = longitude
