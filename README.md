@@ -1,7 +1,7 @@
 ## Objective
 This is a simple TCX parser / reader which can read Garmin TCX file extension files. The package currently does not support laps and merges the whole exercise into one exercise object. 
 The following data is currently parsed: longitude, latitude, elevation, time, distance, hr_value, cadence, watts, TPX_speed (extension). GitHub requests appreciated to add missing Extensions.
-
+[pypi](https://pypi.org/project/tcxreader/)
 
 ## Dependencies
 This package uses [maya](https://pypi.org/project/maya/) for parsing / reading datetimes from TCX files.
