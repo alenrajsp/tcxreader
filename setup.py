@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="tcxreader",  # Replace with your own username
-    version="0.2.1",
+    version="0.3.0",
     author="Alen Rajšp",
     author_email="alen.rajsp@gmail.com",
     description="tcxreader is a parser/reader for Garmin’s TCX file format. It also works well with missing data!",
