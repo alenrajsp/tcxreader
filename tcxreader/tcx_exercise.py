@@ -7,7 +7,8 @@ class TCXExercise:
                  hr_avg: float = None, hr_max: float = None, hr_min=None, max_speed: float = None,
                  avg_speed: float = None, start_time: datetime = None, end_time: datetime = None,
                  duration: float = None, cadence_avg: float = None, cadence_max: float = None, ascent: float = None,
-                 descent: float = None, distance: float = None):
+                 descent: float = None, distance: float = None, altitude_avg: float = None, altitude_min: float = None,
+                 altitude_max: float = None):
         """
         :param trackpoints: List of TCXTrackPoint objects
         :param activity_type: sport string
@@ -24,7 +25,11 @@ class TCXExercise:
         :param ascent: total meters of ascent during the exercise
         :param descent: total meters of descent during the exercise
         :param distance: total distance of exercise in meters
+        :param altitude_avg: average altitude in meters
+        :param altitude_min: minimum altitude during the exercise
+        :param altitude_max: maxiumum altitude during the exersice
         """
+
         self.trackpoints = trackpoints
         self.activity_type = activity_type
         self.calories = calories
@@ -41,3 +46,6 @@ class TCXExercise:
         self.ascent = ascent
         self.descent = descent
         self.distance = distance
+        self.altitude_avg = altitude_avg
+        self.altitude_min = altitude_min
+        self.altitude_max = altitude_max

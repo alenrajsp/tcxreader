@@ -98,9 +98,9 @@ class TCXReader:
             if trackpoint.cadence != None:
                 cadence.append(trackpoint.cadence)
 
-        if len(hr) > 0:
-            (tcx.hr_max, tcx.hr_min) = (max(hr), min(hr))
-            tcx.hr_avg = sum(hr) / len(hr)
+        if len(altitude) > 0:
+            (tcx.altitude_max, tcx.altitude_min) = (max(altitude), min(altitude))
+            tcx.altitude_avg = sum(altitude) / len(altitude)
 
         (ascent, descent) = (0, 0)
         previous_altitude = -100
@@ -115,6 +115,10 @@ class TCXReader:
                 previous_altitude = alt
 
         (tcx.ascent, tcx.descent) = (ascent, descent)
+
+        if len(hr) > 0:
+            (tcx.al, tcx.hr_min) = (max(hr), min(hr))
+            tcx.hr_avg = sum(hr) / len(hr)
 
         if len(cadence) > 0:
             tcx.cadence_max = max(cadence)

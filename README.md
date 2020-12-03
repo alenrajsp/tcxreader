@@ -4,7 +4,7 @@ This is a simple TCX parser / reader which can read Garmin TCX file extension fi
 support laps and merges the whole exercise into one exercise object. The following data is currently parsed: longitude,
 latitude, elevation, time, distance, hr_value, cadence, watts, TPX_speed (extension). The following statistics are
 calculated for each exercise: calories, hr_avg, hr_max, hr_min, avg_speed, start_time, end_time, duration, cadence_avg,
-cadence_max, ascent, descent, distance
+cadence_max, ascent, descent, distance, altitude_max, altitude_min, altitude_avg
 
 GitHub requests appreciated.
 [pypi](https://pypi.org/project/tcxreader/)
@@ -40,6 +40,9 @@ data = {TCXExercise}
  hr_avg = {float} 140.59545804464972
  hr_max = {int} 200
  hr_min = {int} 94
+ altitude_max = {float}
+ altitude_min = {float}
+ altitude_avg = {float}
  max_speed = {float} 18.95800018310547
  start_time = {datetime} 2015-02-19 09:31:29+00:00
  trackpoints = {list: 7799} [TCXTrackPoint]
