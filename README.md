@@ -10,6 +10,10 @@ GitHub requests appreciated.
 [pypi](https://pypi.org/project/tcxreader/)
 [github](https://github.com/alenrajsp/tcxreader)
 
+## Installation
+
+    pip install tcxreader
+
 ## Dependencies
 
 This package uses [maya](https://pypi.org/project/maya/) for parsing / reading datetimes from TCX files.
