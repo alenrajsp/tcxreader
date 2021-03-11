@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="tcxreader",  # Replace with your own username
+    name="tcxreader",
     version="0.3.0",
     author="Alen Rajšp",
     author_email="alen.rajsp@gmail.com",
@@ -25,4 +25,5 @@ setuptools.setup(
         "Development Status :: 4 - Beta",
     ],
     python_requires='>=3.6',
+    test_suite="tests",
 )
