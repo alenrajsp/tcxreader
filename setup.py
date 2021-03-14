@@ -25,4 +25,5 @@ setuptools.setup(
         "Development Status :: 4 - Beta",
     ],
     python_requires='>=3.6',
+    test_suite="tests",
 )
