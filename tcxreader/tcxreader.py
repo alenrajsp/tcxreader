@@ -117,7 +117,7 @@ class TCXReader:
         (tcx.ascent, tcx.descent) = (ascent, descent)
 
         if len(hr) > 0:
-            (tcx.al, tcx.hr_min) = (max(hr), min(hr))
+            (tcx.hr_max, tcx.hr_min) = (max(hr), min(hr))
             tcx.hr_avg = sum(hr) / len(hr)
 
         if len(cadence) > 0:

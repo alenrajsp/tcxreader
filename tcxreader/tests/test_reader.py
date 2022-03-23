@@ -13,27 +13,27 @@ class TestTCXReader(TestCase):
 
     def test_duration(self):
         self.assertEqual(self.tcx.duration, 17250.0)
-                
+
     def test_calories(self):
         self.assertEqual(self.tcx.calories, 2010)
-        
+
     def test_hr_avg(self):
         self.assertEqual(int(self.tcx.hr_avg), 140)
-        
+
     def test_hr_max(self):
-        self.assertEqual(self.tcx.hr_max, None)        
+        self.assertEqual(self.tcx.hr_max, 200)
 
     def test_hr_min(self):
-        self.assertEqual(self.tcx.hr_min, 94)  
-        
+        self.assertEqual(self.tcx.hr_min, 94)
+
     def altitude_avg(self):
-        self.assertEqual(self.tcx.altitude_avg, None)  
+        self.assertEqual(self.tcx.altitude_avg, None)
 
     def test_altitude_min(self):
-        self.assertAlmostEqual(self.tcx.altitude_min, -5.4, places=1)  
-        
+        self.assertAlmostEqual(self.tcx.altitude_min, -5.4, places=1)
+
     def test_ascent(self):
-        self.assertAlmostEqual(self.tcx.ascent, 1404.4, places=1)          
+        self.assertAlmostEqual(self.tcx.ascent, 1404.4, places=1)
 
     def test_descent(self):
         self.assertAlmostEqual(self.tcx.descent, 1422.0, places=1)
