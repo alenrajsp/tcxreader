@@ -1,6 +1,5 @@
 import os
 import xml.etree.ElementTree as ET
-import maya
 import datetime
 from tcxreader.tcx_track_point import TCXTrackPoint
 from tcxreader.tcx_exercise import TCXExercise
@@ -44,8 +43,8 @@ class TCXReader:
                                             if trackpoint.tag == GARMIN_XML_SCHEMA + 'Trackpoint':
                                                 for trackpoint_data in trackpoint:
                                                     if trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Time':
-                                                        tcx_point.time = maya.parse(trackpoint_data.text,
-                                                                                    '%Y-%m-%d %H:%M:%S.%f').datetime()
+                                                        tcx_point.time = datetime.datetime.strptime(
+                                                            trackpoint_data.text, '%Y-%m-%dT%H:%M:%S.%fZ')
                                                     elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Position':
                                                         for position in trackpoint_data:
                                                             if position.tag == GARMIN_XML_SCHEMA + "LatitudeDegrees":
