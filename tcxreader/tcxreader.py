@@ -25,7 +25,7 @@ class TCXReader:
         root = tree.getroot()
         trackpoints = []
         for activities in root:
-            if activities.tag is GARMIN_XML_SCHEMA + 'Activities':
+            if activities.tag == GARMIN_XML_SCHEMA + 'Activities':
                 for activity in activities:
                     if activity.tag == GARMIN_XML_SCHEMA + 'Activity':
                         tcx_exercise.activity_type = activity.attrib['Sport']
