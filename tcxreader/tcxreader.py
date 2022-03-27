@@ -1,9 +1,8 @@
-import os
-import xml.etree.ElementTree as ET
 import datetime
-from tcxreader.tcx_track_point import TCXTrackPoint
+import xml.etree.ElementTree as ET
+
 from tcxreader.tcx_exercise import TCXExercise
-from pathlib import Path
+from tcxreader.tcx_track_point import TCXTrackPoint
 
 GARMIN_XML_SCHEMA = '{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}'
 GARMIN_XML_EXTENSIONS = '{http://www.garmin.com/xmlschemas/ActivityExtension/v2}'
@@ -26,51 +25,25 @@ class TCXReader:
         root = tree.getroot()
         trackpoints = []
         for activities in root:
-            if activities.tag == GARMIN_XML_SCHEMA + 'Activities':
+            if activities.tag is GARMIN_XML_SCHEMA + 'Activities':
                 for activity in activities:
-                    if activity.tag == GARMIN_XML_SCHEMA + 'Activity':
+                    if activity.tag is GARMIN_XML_SCHEMA + 'Activity':
                         tcx_exercise.activity_type = activity.attrib['Sport']
                         for lap in activity:
-                            if lap.tag == GARMIN_XML_SCHEMA + 'Lap':
+                            if lap.tag is GARMIN_XML_SCHEMA + 'Lap':
                                 for track in lap:
-                                    if track.tag == GARMIN_XML_SCHEMA + 'Calories':
+                                    if track.tag is GARMIN_XML_SCHEMA + 'Calories':
                                         tcx_exercise.calories += int(track.text)
-                                    if track.tag == GARMIN_XML_SCHEMA + 'DistanceMeters':
+                                    if track.tag is GARMIN_XML_SCHEMA + 'DistanceMeters':
                                         tcx_exercise.distance += float(track.text)
-                                    if track.tag == GARMIN_XML_SCHEMA + 'Track':
+                                    if track.tag is GARMIN_XML_SCHEMA + 'Track':
                                         for trackpoint in track:
                                             tcx_point = TCXTrackPoint()
-                                            if trackpoint.tag == GARMIN_XML_SCHEMA + 'Trackpoint':
-                                                for trackpoint_data in trackpoint:
-                                                    if trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Time':
-                                                        tcx_point.time = datetime.datetime.strptime(
-                                                            trackpoint_data.text, '%Y-%m-%dT%H:%M:%S.%fZ')
-                                                    elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Position':
-                                                        for position in trackpoint_data:
-                                                            if position.tag == GARMIN_XML_SCHEMA + "LatitudeDegrees":
-                                                                tcx_point.latitude = float(position.text)
-                                                            elif position.tag == GARMIN_XML_SCHEMA + "LongitudeDegrees":
-                                                                tcx_point.longitude = float(position.text)
-                                                    elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'AltitudeMeters':
-                                                        tcx_point.elevation = float(trackpoint_data.text)
-                                                    elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'DistanceMeters':
-                                                        tcx_point.distance = float(trackpoint_data.text)
-                                                    elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'HeartRateBpm':
-                                                        for heart_rate in trackpoint_data:
-                                                            tcx_point.hr_value = int(heart_rate.text)
-                                                    elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Cadence':
-                                                        tcx_point.cadence = int(trackpoint_data.text)
-                                                    elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Extensions':
-                                                        for extension in trackpoint_data:
-                                                            if extension.tag == GARMIN_XML_EXTENSIONS + 'TPX':
-                                                                for tpx_extension in extension:
-                                                                    if tpx_extension.tag == GARMIN_XML_EXTENSIONS + 'Speed':
-                                                                        tcx_point.TPX_speed = float(tpx_extension.text)
-                                                                    elif tpx_extension.tag == GARMIN_XML_EXTENSIONS + 'Watts':
-                                                                        tcx_point.watts = float(tpx_extension.text)
+                                            if trackpoint.tag is GARMIN_XML_SCHEMA + 'Trackpoint':
+                                                self.trackpoint_parser(tcx_point, trackpoint)
                                             trackpoints.append(tcx_point)
         # remove_data_at_start_and_end_without_gps. Those stats are not taken for distance and hr measurements!
-        if only_gps == True:
+        if only_gps is True:
             removalList = []
             for index in range(len(trackpoints)):
                 if trackpoints[index].longitude is None:
@@ -84,17 +57,46 @@ class TCXReader:
         tcx_exercise = self.__find_hi_lo_avg(tcx_exercise)
         return tcx_exercise
 
+    def trackpoint_parser(self, tcx_point, trackpoint):
+        for trackpoint_data in trackpoint:
+            if trackpoint_data.tag is GARMIN_XML_SCHEMA + 'Time':
+                tcx_point.time = datetime.datetime.strptime(
+                    trackpoint_data.text, '%Y-%m-%dT%H:%M:%S.%fZ')
+            elif trackpoint_data.tag is GARMIN_XML_SCHEMA + 'Position':
+                for position in trackpoint_data:
+                    if position.tag is GARMIN_XML_SCHEMA + "LatitudeDegrees":
+                        tcx_point.latitude = float(position.text)
+                    elif position.tag is GARMIN_XML_SCHEMA + "LongitudeDegrees":
+                        tcx_point.longitude = float(position.text)
+            elif trackpoint_data.tag is GARMIN_XML_SCHEMA + 'AltitudeMeters':
+                tcx_point.elevation = float(trackpoint_data.text)
+            elif trackpoint_data.tag is GARMIN_XML_SCHEMA + 'DistanceMeters':
+                tcx_point.distance = float(trackpoint_data.text)
+            elif trackpoint_data.tag is GARMIN_XML_SCHEMA + 'HeartRateBpm':
+                for heart_rate in trackpoint_data:
+                    tcx_point.hr_value = int(heart_rate.text)
+            elif trackpoint_data.tag is GARMIN_XML_SCHEMA + 'Cadence':
+                tcx_point.cadence = int(trackpoint_data.text)
+            elif trackpoint_data.tag is GARMIN_XML_SCHEMA + 'Extensions':
+                for extension in trackpoint_data:
+                    if extension.tag is GARMIN_XML_EXTENSIONS + 'TPX':
+                        for tpx_extension in extension:
+                            if tpx_extension.tag is GARMIN_XML_EXTENSIONS + 'Speed':
+                                tcx_point.TPX_speed = float(tpx_extension.text)
+                            elif tpx_extension.tag is GARMIN_XML_EXTENSIONS + 'Watts':
+                                tcx_point.watts = float(tpx_extension.text)
+
     def __find_hi_lo_avg(self, tcx: TCXExercise) -> TCXExercise:
         trackpoints = tcx.trackpoints
         hr = []
         altitude = []
         cadence = []
         for trackpoint in tcx.trackpoints:
-            if trackpoint.hr_value != None:
+            if trackpoint.hr_value is not None:
                 hr.append(trackpoint.hr_value)
-            if trackpoint.elevation != None:
+            if trackpoint.elevation is not None:
                 altitude.append(trackpoint.elevation)
-            if trackpoint.cadence != None:
+            if trackpoint.cadence is not None:
                 cadence.append(trackpoint.cadence)
 
         if len(altitude) > 0:
@@ -105,7 +107,7 @@ class TCXReader:
         previous_altitude = -100
         for alt in altitude:
             if isinstance(alt, float):
-                if previous_altitude == -100:
+                if previous_altitude is -100:
                     pass
                 elif alt > previous_altitude:
                     ascent += alt - previous_altitude
