@@ -1,5 +1,5 @@
 <div width="200" style="background-color: white; width: 200px">
- <img width="200" style="margin-bottom:-8px" src=".github/logo/logo.png">
+ <img width="200" style="margin-bottom:-8px" src=".github/logo/logo-white-background.png">
 </div>
 
 ---
