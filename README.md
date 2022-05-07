@@ -1,6 +1,14 @@
+<div width="200" style="background-color: white; width: 200px">
+ <img width="200" style="margin-bottom:-8px" src=".github/logo/logo.png">
+</div>
+
+---
+
+**tcxreader** is a reader for Garmin’s TCX file format. It also works well with missing data! 
+
 ## Objective
 
-This is a simple TCX parser / reader which can read Garmin TCX file extension files. The package currently does not
+This is a simple TCX reader which can read Garmin TCX file extension files. The package currently does not
 support laps and merges the whole exercise into one exercise object. The following data is currently parsed: longitude,
 latitude, elevation, time, distance, hr_value, cadence, watts, TPX_speed (extension). The following statistics are
 calculated for each exercise: calories, hr_avg, hr_max, hr_min, avg_speed, start_time, end_time, duration, cadence_avg,
@@ -12,7 +20,9 @@ GitHub requests appreciated.
 
 ## Installation
 
-    pip install tcxreader
+```
+pip install tcxreader
+```
 
 ## Dependencies
 
@@ -76,7 +86,7 @@ Datasets are available on the following links: [DATASET1](http://iztok-jr-fister
 ## Licence
 
 This package is distributed under the MIT License. This license can be found online
-at <http://www.opensource.org/licenses/MIT>.
+at [http://www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT).
 
 ## Disclaimer
 
