@@ -5,8 +5,10 @@ from tcxreader.tcxreader import TCXReader, TCXTrackPoint, TCXExercise
 
 class TestTCXReader(TestCase):
     def setUp(self):
-        filename = os.path.join(os.path.dirname(__file__), "data", '15.tcx')
-        self.tcx = TCXReader().read(filename)
+        filename_1 = os.path.join(os.path.dirname(__file__), "data", '15.tcx')
+        filename_2 = os.path.join(os.path.dirname(__file__), "data", 'sup_activity_1.tcx')
+        self.tcx:TCXExercise = TCXReader().read(filename_1)
+        self.tcx_sup:TCXExercise = TCXReader().read(filename_2)
 
     def test_distance(self):
         self.assertEqual(self.tcx.distance, 116366.98)
@@ -37,3 +39,10 @@ class TestTCXReader(TestCase):
 
     def test_descent(self):
         self.assertAlmostEqual(self.tcx.descent, 1422.0, places=1)
+
+    def test_author(self):
+        self.assertEqual(self.tcx_sup.author.name, "Connect Api")
+        self.assertEqual(self.tcx.author.version_major, 17)
+        self.assertEqual(self.tcx.author.version_minor, 20)
+        self.assertEqual(self.tcx.author.build_major, 0)
+        self.assertEqual(self.tcx.author.build_minor, 0)
