@@ -12,7 +12,7 @@ This is a simple TCX reader which can read Garmin TCX file extension files. The 
 support laps and merges the whole exercise into one exercise object. The following data is currently parsed: longitude,
 latitude, elevation, time, distance, hr_value, cadence, watts, TPX_speed (extension). The following statistics are
 calculated for each exercise: calories, hr_avg, hr_max, hr_min, avg_speed, start_time, end_time, duration, cadence_avg,
-cadence_max, ascent, descent, distance, altitude_max, altitude_min, altitude_avg
+cadence_max, ascent, descent, distance, altitude_max, altitude_min, altitude_avg, steps and **author data**.
 
 GitHub requests appreciated.
 [pypi](https://pypi.org/project/tcxreader/)
@@ -80,8 +80,8 @@ Allows parsing / reading of TCX files.
 
 ## Datasets
 
-Datasets are available on the following links: [DATASET1](http://iztok-jr-fister.eu/static/publications/Sport5.zip)
-, [DATASET2](http://iztok-jr-fister.eu/static/css/datasets/Sport.zip)
+Datasets available and used in the examples on the following links: [DATASET1](http://iztok-jr-fister.eu/static/publications/Sport5.zip)
+, [DATASET2](http://iztok-jr-fister.eu/static/css/datasets/Sport.zip), [DATASET3](https://github.com/firefly-cpp/tcx-test-files).
 
 ## Licence
 
