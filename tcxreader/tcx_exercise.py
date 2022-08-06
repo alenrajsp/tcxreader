@@ -8,7 +8,7 @@ class TCXExercise:
                  avg_speed: float = None, start_time: datetime = None, end_time: datetime = None,
                  duration: float = None, cadence_avg: float = None, cadence_max: float = None, ascent: float = None,
                  descent: float = None, distance: float = None, altitude_avg: float = None, altitude_min: float = None,
-                 altitude_max: float = None, steps = None, author = None):
+                 altitude_max: float = None, steps = None, author = None, tpx_ext_stats:dict = {}):
         """
         :param trackpoints: List of TCXTrackPoint objects
         :param activity_type: sport string
@@ -53,3 +53,4 @@ class TCXExercise:
         self.altitude_max = altitude_max
         self.steps = steps
         self.author = author
+        self.tpx_ext_stats = tpx_ext_stats

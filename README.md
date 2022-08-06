@@ -6,6 +6,10 @@
 
 **tcxreader** is a reader for Garmin's TCX file format. It also works well with missing data!
 
+# Warning!
+This is a DEV branch. For future 0.4.0 version.
+Breaking changes between versions **0.3.15** and **0.4.0**.
+
 ## Objective
 
 This is a simple TCX reader which can read Garmin TCX file extension files. The package currently does not

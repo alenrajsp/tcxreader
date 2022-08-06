@@ -1,7 +1,8 @@
 class TCXTrackPoint(object):
     def __init__(self, longitude: float = None, latitude: float = None, elevation: float = None, time=None,
-                 distance=None, hr_value: int = None, cadence=None, TPX_speed: float = None, watts: float = None):
+                 distance=None, hr_value: int = None, cadence=None, tpx_ext:dict= {}):
         '''
+        Deprecated. Please use the new class.
         :param longitude: Longitude of the trackpoint
         :param latitude: Latitude of the trackpoint
         :param elevation: Elevation of the trackpoint
@@ -9,8 +10,7 @@ class TCXTrackPoint(object):
         :param distance: Total distance traveled at the current trackpoint
         :param hr_value: Heart rate value at the trackpoint
         :param cadence: Cadence at the trackpoint
-        :param TPX_speed: Current speed (extension), not necessarily OK!
-        :param watts: Watts usage at the trackpoint
+        :param tpx_ext: Dictionary of all additional data types! e,g, speed, cadence, runcadence
         '''
         self.longitude = longitude
         self.latitude = latitude
@@ -19,18 +19,20 @@ class TCXTrackPoint(object):
         self.distance = distance
         self.hr_value = hr_value
         self.cadence = cadence
-        self.watts = watts
-        self.TPX_speed = TPX_speed
+        self.tpx_ext = tpx_ext
 
     def __str__(self):
         (longitude, latitude, elevation) = (self.longitude, self.latitude, self.elevation)
         time = self.time
         distance = self.distance
-        (hr_value, cadence, watts) = (self.hr_value, self.cadence, self.watts)
-        TPX_speed = self.TPX_speed
+        (hr_value, cadence) = (self.hr_value, self.cadence)
 
-        return f'{time} | lat:{latitude}, lon:{longitude} elev:{elevation} | m:{distance} | ' \
-               f'hr:{hr_value}, cadence:{cadence}, watt:{watts}, TPX_speed:{TPX_speed}'
+        tpx_str = ""
+        for key in self.tpx_ext:
+            tpx_str+=f'\n\t{key}:{self.tpx_ext[key]}'
+
+        return f'Time:{time}\nLatitude:\t{latitude}\nLongitude:\t{longitude}\nElevation:\t{elevation}\nDistance:\t{distance}\n' \
+               f'Heartrate:\t{hr_value}\nCadence:\t{cadence} \nTPX Extensions: {tpx_str}\n#############################'
 
     def __unicode__(self):
         return self.__str__()
