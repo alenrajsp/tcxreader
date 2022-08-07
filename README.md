@@ -76,7 +76,7 @@ data = {TCXExercise}
 ## Data classes
 
 <div width="100%" style="background-color: white; width: 100%">
- <img width="100%" style="margin-bottom:-8px" src="https://raw.githubusercontent.com/alenrajsp/tcxreader/ef692d3f1a592ca9072b962d3989cb3dc2437d12/.github/images/data-explanation.svg">
+ <img width="100%" style="margin-bottom:-8px" src="https://raw.githubusercontent.com/alenrajsp/tcxreader/7c9af6dc88f9d83a8c6751b454f118220ecfd9a1/.github/images/data-explanation.svg">
 </div>
 
 ## Features
