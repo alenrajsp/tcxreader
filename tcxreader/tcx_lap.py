@@ -12,6 +12,8 @@ class TCXLap:
                  ):
         """
         Similar to TCXExercise, but is a container class for a lap.
+        :param tpx_ext_stats: contains statistics (min, max, avg) of TPX extenstion data of trackpoints
+        :param lx_ext: contains LX extension data
         :param trackpoints: List of TCXTrackPoint objects
         :param calories: total calories used in an exercise
         :param hr_avg: maxiumum heartrate achieved during the exercise
@@ -29,6 +31,7 @@ class TCXLap:
         :param altitude_avg: average altitude in meters
         :param altitude_min: minimum altitude during the exercise
         :param altitude_max: maxiumum altitude during the exersice
+
         """
 
         self.trackpoints = trackpoints

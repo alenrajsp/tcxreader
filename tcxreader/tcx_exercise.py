@@ -30,6 +30,10 @@ class TCXExercise:
         :param altitude_min: minimum altitude during the exercise
         :param altitude_max: maxiumum altitude during the exersice
         :param author: describes who recorded the data, e.g. which device
+        :param tpx_ext_stats: contains statistics (min, max, avg) of TPX extenstion data of trackpoints
+        :param lx_ext: contains sum of LX extension data for each key in LX extension tag
+        :param laps: contains subset of data for each lap
+
         """
 
         self.trackpoints = trackpoints

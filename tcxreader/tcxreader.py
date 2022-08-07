@@ -105,9 +105,9 @@ class TCXReader:
 
         tcx_exercise.trackpoints = trackpoints
 
-        tcx_exercise = self.__find_hi_lo_avg(tcx_exercise)
+        tcx_exercise = self.__find_hi_lo_avg(tcx_exercise, only_gps)
         for lap in tcx_exercise.laps:
-            self.__find_hi_lo_avg(lap)
+            self.__find_hi_lo_avg(lap, only_gps)
         return tcx_exercise
 
     def trackpoint_parser(self, tcx_point:TCXTrackPoint, trackpoint):
@@ -143,8 +143,21 @@ class TCXReader:
                             else:
                                 tag_value=int(tag_value)
                             tcx_point.tpx_ext[tag_name]=tag_value
-    def __find_hi_lo_avg(self, tcx: TCXExercise) -> TCXExercise:
+    def __find_hi_lo_avg(self, tcx: TCXExercise, only_gps) -> TCXExercise:
         trackpoints = tcx.trackpoints
+
+        if only_gps == True:
+            removalList = []
+            for index in range(len(trackpoints)):
+                if trackpoints[index].longitude == None:
+                    removalList.append(index)
+
+            for removal in sorted(removalList, reverse=True):
+                del trackpoints[removal]
+
+        tcx.trackpoints = trackpoints
+
+
         hr = []
         altitude = []
         cadence = []
@@ -215,11 +228,14 @@ class TCXReader:
             max_speed = 0.0
             for index in range(len(tcx.trackpoints)):
                 if skip!=True:
-                    time = abs((tcx.trackpoints[index-1].time - tcx.trackpoints[index].time).total_seconds())
-                    distance = abs(tcx.trackpoints[index-1].distance - tcx.trackpoints[index].distance)
-                    speed = distance/time*3.6
-                    if speed>max_speed:
-                        max_speed=speed
+                    try:
+                        time = abs((tcx.trackpoints[index-1].time - tcx.trackpoints[index].time).total_seconds())
+                        distance = abs(tcx.trackpoints[index-1].distance - tcx.trackpoints[index].distance)
+                        speed = distance/time*3.6
+                        if speed>max_speed:
+                            max_speed=speed
+                    except Exception:
+                        a=100
                 skip=False
             tcx.max_speed=max_speed
 
