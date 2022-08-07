@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 
 from tcxreader.tcx_author import TCXAuthor
 from tcxreader.tcx_exercise import TCXExercise
+from tcxreader.tcx_lap import TCXLap
 from tcxreader.tcx_track_point import TCXTrackPoint
 
 GARMIN_XML_SCHEMA = '{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}'
@@ -20,7 +21,7 @@ class TCXReader:
         :return: A list of TCXTrackPoint objects.
         """
 
-        tcx_exercise = TCXExercise(calories=0, distance=0, tpx_ext_stats={})
+        tcx_exercise = TCXExercise(calories=0, distance=0, tpx_ext_stats={}, lx_ext={}, laps=[])
 
         tree = ET.parse(fileLocation)
         root = tree.getroot()
@@ -31,28 +32,47 @@ class TCXReader:
                     if activity.tag == GARMIN_XML_SCHEMA + 'Activity':
                         tcx_exercise.activity_type = activity.attrib['Sport']
                         for lap in activity:
+                            tcx_lap = TCXLap(calories=0, distance=0, trackpoints=[], tpx_ext_stats={}, lx_ext={})
                             if lap.tag == GARMIN_XML_SCHEMA + 'Lap':
                                 for lap_child in lap:
                                     if lap_child.tag == GARMIN_XML_SCHEMA + 'Calories':
                                         tcx_exercise.calories += int(lap_child.text)
+                                        tcx_lap.calories += int(lap_child.text)
                                     if lap_child.tag == GARMIN_XML_SCHEMA + 'DistanceMeters':
                                         tcx_exercise.distance += float(lap_child.text)
+                                        tcx_lap.distance += float(lap_child.text)
                                     if lap_child.tag == GARMIN_XML_SCHEMA + 'Track':
                                         for trackpoint in lap_child:
                                             tcx_point = TCXTrackPoint(tpx_ext={})
                                             if trackpoint.tag == GARMIN_XML_SCHEMA + 'Trackpoint':
                                                 self.trackpoint_parser(tcx_point, trackpoint)
                                             trackpoints.append(tcx_point)
+                                            tcx_lap.trackpoints.append(tcx_point)
                                 if lap_child.tag == GARMIN_XML_SCHEMA + 'Extensions':
                                     extensions = lap_child
+                                    c={}
                                     for extension in extensions:
                                         if extension.tag == GARMIN_XML_EXTENSIONS+'LX':
                                             for lx_extension in extension:
-                                                if lx_extension.tag == GARMIN_XML_EXTENSIONS+'Steps': #i.e. Steps in a run or strokes on a sup
-                                                    if tcx_exercise.steps != None:
-                                                        tcx_exercise.steps += int(lx_extension.text)
+
+                                                tag_name = lx_extension.tag.replace(GARMIN_XML_EXTENSIONS, "")
+                                                tag_value = lx_extension.text
+                                                if '.' in tag_value:
+                                                    tag_value = float(tag_value)
+                                                else:
+                                                    tag_value = int(tag_value)
+
+                                                if "Avg" in tag_name or "Average" in tag_name or "Max" in tag_name or "Min in tag_name":
+                                                    pass
+                                                else:
+                                                    if tag_name in tcx_exercise.lx_ext:
+                                                        tcx_exercise.lx_ext[tag_name] += tag_value
                                                     else:
-                                                        tcx_exercise.steps = int(lx_extension.text)
+                                                        tcx_exercise.lx_ext[tag_name] = tag_value
+
+                                                tcx_lap.lx_ext[tag_name] = tag_value
+                            if len(tcx_lap.trackpoints)>0:
+                                tcx_exercise.laps.append(tcx_lap)
             if node.tag == GARMIN_XML_SCHEMA+'Author':
                 author = TCXAuthor()
                 for author_node in node:
@@ -86,6 +106,8 @@ class TCXReader:
         tcx_exercise.trackpoints = trackpoints
 
         tcx_exercise = self.__find_hi_lo_avg(tcx_exercise)
+        for lap in tcx_exercise.laps:
+            self.__find_hi_lo_avg(lap)
         return tcx_exercise
 
     def trackpoint_parser(self, tcx_point:TCXTrackPoint, trackpoint):

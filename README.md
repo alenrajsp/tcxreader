@@ -28,10 +28,6 @@ GitHub requests appreciated.
 pip install tcxreader
 ```
 
-## Dependencies
-
-This package uses [maya](https://pypi.org/project/maya/) for parsing / reading datetimes from TCX files.
-
 ## Example
 
 An example on how to use the package is shown below.
@@ -77,6 +73,11 @@ data = {TCXExercise}
 	 watts = {float} 123
 """
 ```
+## Data classes
+
+<div width="200" style="background-color: white; width: 200px">
+ <img width="200" style="margin-bottom:-8px" src="https://raw.githubusercontent.com/alenrajsp/tcxreader/main/.github/images/data-explanation.svg">
+</div>
 
 ## Features
 

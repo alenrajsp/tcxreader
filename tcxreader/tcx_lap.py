@@ -2,17 +2,17 @@ from tcxreader.tcx_track_point import TCXTrackPoint
 from datetime import datetime
 
 
-class TCXExercise:
-    def __init__(self, trackpoints: [TCXTrackPoint] = None, activity_type: str = None, calories: int = None,
+class TCXLap:
+    def __init__(self, trackpoints: [TCXTrackPoint] = None, calories: int = None,
                  hr_avg: float = None, hr_max: float = None, hr_min=None, max_speed: float = None,
                  avg_speed: float = None, start_time: datetime = None, end_time: datetime = None,
                  duration: float = None, cadence_avg: float = None, cadence_max: float = None, ascent: float = None,
                  descent: float = None, distance: float = None, altitude_avg: float = None, altitude_min: float = None,
-                 altitude_max: float = None, author = None,
-                 tpx_ext_stats:dict = None, lx_ext:dict = None, laps:[]=None):
+                 altitude_max: float = None, lx_ext:dict = None, tpx_ext_stats: dict = {},
+                 ):
         """
+        Similar to TCXExercise, but is a container class for a lap.
         :param trackpoints: List of TCXTrackPoint objects
-        :param activity_type: sport string
         :param calories: total calories used in an exercise
         :param hr_avg: maxiumum heartrate achieved during the exercise
         :param hr_max: average heartrate during the exercise
@@ -29,12 +29,9 @@ class TCXExercise:
         :param altitude_avg: average altitude in meters
         :param altitude_min: minimum altitude during the exercise
         :param altitude_max: maxiumum altitude during the exersice
-        :param author: describes who recorded the data, e.g. which device
         """
 
         self.trackpoints = trackpoints
-        self.laps = laps
-        self.activity_type = activity_type
         self.calories = calories
         self.hr_avg = hr_avg
         self.hr_max = hr_max
@@ -52,6 +49,5 @@ class TCXExercise:
         self.altitude_avg = altitude_avg
         self.altitude_min = altitude_min
         self.altitude_max = altitude_max
-        self.author = author
         self.tpx_ext_stats = tpx_ext_stats
         self.lx_ext = lx_ext
