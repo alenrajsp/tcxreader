@@ -1,6 +1,7 @@
 import os
 from unittest import TestCase
-from tcxreader.tcxreader import TCXReader, TCXTrackPoint, TCXExercise
+from tcxreader.tcxreader import TCXTrackPoint, TCXExercise
+from tcxreader.tcxreader import TCXReader
 
 
 class TestTCXReader(TestCase):
@@ -46,3 +47,6 @@ class TestTCXReader(TestCase):
         self.assertEqual(self.tcx.author.version_minor, 20)
         self.assertEqual(self.tcx.author.build_major, 0)
         self.assertEqual(self.tcx.author.build_minor, 0)
+
+    def test_tpx_ext_stats(self):
+        self.assertAlmostEqual(self.tcx.tpx_ext_stats['Speed']['max'], 18.95800018310547, places=10)
