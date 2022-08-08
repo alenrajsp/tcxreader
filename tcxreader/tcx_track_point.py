@@ -2,7 +2,6 @@ class TCXTrackPoint(object):
     def __init__(self, longitude: float = None, latitude: float = None, elevation: float = None, time=None,
                  distance=None, hr_value: int = None, cadence=None, tpx_ext:dict= {}):
         '''
-        Deprecated. Please use the new class.
         :param longitude: Longitude of the trackpoint
         :param latitude: Latitude of the trackpoint
         :param elevation: Elevation of the trackpoint
@@ -12,14 +11,14 @@ class TCXTrackPoint(object):
         :param cadence: Cadence at the trackpoint
         :param tpx_ext: Dictionary of all additional data types! e,g, speed, cadence, runcadence
         '''
-        self.longitude = longitude
-        self.latitude = latitude
-        self.elevation = elevation
+        self.longitude:float = longitude
+        self.latitude:float = latitude
+        self.elevation:int = elevation
         self.time = time
-        self.distance = distance
-        self.hr_value = hr_value
-        self.cadence = cadence
-        self.tpx_ext = tpx_ext
+        self.distance:float = distance
+        self.hr_value:int = hr_value
+        self.cadence:int = cadence
+        self.tpx_ext:dict = tpx_ext
 
     def __str__(self):
         (longitude, latitude, elevation) = (self.longitude, self.latitude, self.elevation)

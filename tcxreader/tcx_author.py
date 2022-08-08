@@ -12,8 +12,8 @@ class TCXAuthor:
         :param build_major: major version of the build of the device software
         :param build_minor: minor version of the build of the device software
         """
-        self.name = name
-        self.version_major = version_major
-        self.version_minor = version_minor
-        self.build_major = build_major
-        self.build_minor = build_minor
+        self.name:str = name
+        self.version_major:int = version_major
+        self.version_minor:int = version_minor
+        self.build_major:int = build_major
+        self.build_minor:int = build_minor
