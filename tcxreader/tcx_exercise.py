@@ -1,15 +1,18 @@
+from tcxreader.tcx_author import TCXAuthor
+from tcxreader.tcx_lap import TCXLap
 from tcxreader.tcx_track_point import TCXTrackPoint
 from datetime import datetime
+from typing import List
 
 
 class TCXExercise:
-    def __init__(self, trackpoints: [TCXTrackPoint] = None, activity_type: str = None, calories: int = None,
+    def __init__(self, trackpoints: List[TCXTrackPoint] = None, activity_type: str = None, calories: int = None,
                  hr_avg: float = None, hr_max: float = None, hr_min=None, max_speed: float = None,
                  avg_speed: float = None, start_time: datetime = None, end_time: datetime = None,
                  duration: float = None, cadence_avg: float = None, cadence_max: float = None, ascent: float = None,
                  descent: float = None, distance: float = None, altitude_avg: float = None, altitude_min: float = None,
                  altitude_max: float = None, author = None,
-                 tpx_ext_stats:dict = None, lx_ext:dict = None, laps:[]=None):
+                 tpx_ext_stats:dict = None, lx_ext:dict = None, laps:List[TCXLap]=None):
         """
         :param trackpoints: List of TCXTrackPoint objects
         :param activity_type: sport string
@@ -36,9 +39,9 @@ class TCXExercise:
 
         """
 
-        self.trackpoints = trackpoints
-        self.laps = laps
-        self.activity_type = activity_type
+        self.trackpoints:TCXTrackPoint = trackpoints
+        self.laps:List[TCXLap] = laps
+        self.activity_type:str = activity_type
         self.calories = calories
         self.hr_avg = hr_avg
         self.hr_max = hr_max
@@ -56,6 +59,6 @@ class TCXExercise:
         self.altitude_avg = altitude_avg
         self.altitude_min = altitude_min
         self.altitude_max = altitude_max
-        self.author = author
-        self.tpx_ext_stats = tpx_ext_stats
-        self.lx_ext = lx_ext
+        self.author:TCXAuthor = author
+        self.tpx_ext_stats:dict = tpx_ext_stats
+        self.lx_ext:dict = lx_ext

@@ -143,7 +143,8 @@ class TCXReader:
                             else:
                                 tag_value=int(tag_value)
                             tcx_point.tpx_ext[tag_name]=tag_value
-    def __find_hi_lo_avg(self, tcx: TCXExercise, only_gps) -> TCXExercise:
+
+    def __find_hi_lo_avg(self, tcx: TCXExercise, only_gps:bool) -> TCXExercise:
         trackpoints = tcx.trackpoints
 
         if only_gps == True:

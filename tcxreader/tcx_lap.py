@@ -1,14 +1,15 @@
 from tcxreader.tcx_track_point import TCXTrackPoint
 from datetime import datetime
+from typing import List
 
 
 class TCXLap:
-    def __init__(self, trackpoints: [TCXTrackPoint] = None, calories: int = None,
+    def __init__(self, trackpoints: List[TCXTrackPoint] = None, calories: int = None,
                  hr_avg: float = None, hr_max: float = None, hr_min=None, max_speed: float = None,
                  avg_speed: float = None, start_time: datetime = None, end_time: datetime = None,
                  duration: float = None, cadence_avg: float = None, cadence_max: float = None, ascent: float = None,
                  descent: float = None, distance: float = None, altitude_avg: float = None, altitude_min: float = None,
-                 altitude_max: float = None, lx_ext:dict = None, tpx_ext_stats: dict = {},
+                 altitude_max: float = None, lx_ext:dict = None, tpx_ext_stats: dict = None,
                  ):
         """
         Similar to TCXExercise, but is a container class for a lap.
@@ -34,14 +35,14 @@ class TCXLap:
 
         """
 
-        self.trackpoints = trackpoints
-        self.calories = calories
-        self.hr_avg = hr_avg
-        self.hr_max = hr_max
-        self.hr_min = hr_min
+        self.trackpoints:List[TCXTrackPoint] = trackpoints
+        self.calories:int = calories
+        self.hr_avg:float = hr_avg
+        self.hr_max:int = hr_max
+        self.hr_min:int = hr_min
         self.duration = duration
-        self.max_speed = max_speed
-        self.avg_speed = avg_speed
+        self.max_speed:float = max_speed
+        self.avg_speed:float = avg_speed
         self.start_time = start_time
         self.end_time = end_time
         self.cadence_avg = cadence_avg
@@ -52,5 +53,9 @@ class TCXLap:
         self.altitude_avg = altitude_avg
         self.altitude_min = altitude_min
         self.altitude_max = altitude_max
-        self.tpx_ext_stats = tpx_ext_stats
-        self.lx_ext = lx_ext
+        self.tpx_ext_stats:dict = tpx_ext_stats
+        if self.tpx_ext_stats==None:
+            self.tpx_ext_stats={}
+        self.lx_ext:dict = lx_ext
+        if self.lx_ext==None:
+            self.lx_ext={}
