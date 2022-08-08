@@ -8,8 +8,10 @@ class TestTCXReader(TestCase):
     def setUp(self):
         filename_1 = os.path.join(os.path.dirname(__file__), "data", '15.tcx')
         filename_2 = os.path.join(os.path.dirname(__file__), "data", 'sup_activity_1.tcx')
+        filename_3 = os.path.join(os.path.dirname(__file__), "data", 'cross-country-skiing_activity_1.tcx')
         self.tcx:TCXExercise = TCXReader().read(filename_1)
         self.tcx_sup:TCXExercise = TCXReader().read(filename_2)
+        self.tcx_cross_country:TCXExercise = TCXReader().read(filename_3)
 
     def test_distance(self):
         self.assertEqual(self.tcx.distance, 116366.98)
@@ -50,3 +52,13 @@ class TestTCXReader(TestCase):
 
     def test_tpx_ext_stats(self):
         self.assertAlmostEqual(self.tcx.tpx_ext_stats['Speed']['max'], 18.95800018310547, places=10)
+        self.assertAlmostEqual(self.tcx.tpx_ext_stats['Speed']['avg'],  7.538691497442126, places=10)
+
+    def test_laps(self):
+        self.assertEqual(len(self.tcx_cross_country.laps), 2)
+        self.assertEqual(self.tcx_cross_country.laps[0].lx_ext["AvgRunCadence"], 38)
+        self.assertEqual(self.tcx_cross_country.laps[0].lx_ext["MaxRunCadence"], 95)
+
+        self.assertEqual(len(self.tcx_cross_country.trackpoints),
+                         len(self.tcx_cross_country.laps[0].trackpoints)+len(self.tcx_cross_country.laps[1].trackpoints))
+
