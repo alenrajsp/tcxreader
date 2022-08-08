@@ -50,7 +50,6 @@ class TCXReader:
                                             tcx_lap.trackpoints.append(tcx_point)
                                 if lap_child.tag == GARMIN_XML_SCHEMA + 'Extensions':
                                     extensions = lap_child
-                                    c={}
                                     for extension in extensions:
                                         if extension.tag == GARMIN_XML_EXTENSIONS+'LX':
                                             for lx_extension in extension:
@@ -62,7 +61,7 @@ class TCXReader:
                                                 else:
                                                     tag_value = int(tag_value)
 
-                                                if "Avg" in tag_name or "Average" in tag_name or "Max" in tag_name or "Min in tag_name":
+                                                if "Avg" in tag_name or "Average" in tag_name or "Max" in tag_name or "Min" in tag_name:
                                                     pass
                                                 else:
                                                     if tag_name in tcx_exercise.lx_ext:
