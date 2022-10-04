@@ -127,7 +127,7 @@ class TCXReader:
                 tcx_point.distance = float(trackpoint_data.text)
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'HeartRateBpm':
                 for heart_rate in trackpoint_data:
-                    tcx_point.hr_value = int(heart_rate.text)
+                    tcx_point.hr_value = int(float(heart_rate.text))
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Cadence':
                 tcx_point.cadence = int(trackpoint_data.text)
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Extensions':
