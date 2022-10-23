@@ -113,8 +113,12 @@ class TCXReader:
         index = 0
         for trackpoint_data in trackpoint:
             if trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Time':
-                tcx_point.time = datetime.datetime.strptime(
-                    trackpoint_data.text, '%Y-%m-%dT%H:%M:%S.%fZ')
+               try:
+                  tcx_point.time = datetime.datetime.strptime(
+			            trackpoint_data.text, '%Y-%m-%dT%H:%M:%S.%fZ' )
+               except ValueError:
+                  tcx_point.time = datetime.datetime.strptime(
+			            trackpoint_data.text, '%Y-%m-%dT%H:%M:%SZ' )
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Position':
                 for position in trackpoint_data:
                     if position.tag == GARMIN_XML_SCHEMA + "LatitudeDegrees":
