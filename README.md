@@ -1,12 +1,3 @@
-<div width="200" style="background-color: white; width: 200px">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
- <img width="200" style="margin-bottom:-8px" src="https://raw.githubusercontent.com/alenrajsp/tcxreader/main/.github/logo/logo-white-background.png">
-</div>
-
----
-
 **tcxreader** is a reader for Garmin's TCX file format. It also works well with missing data!
 
 ---
@@ -21,12 +12,6 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/alenrajsp/tcxreader.svg)](http://isitmaintained.com/project/alenrajsp/tcxreader "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/alenrajsp/tcxreader.svg)](http://isitmaintained.com/project/alenrajsp/tcxreader "Percentage of issues still open")
 [![All Contributors](https://img.shields.io/github/all-contributors/alenrajsp/tcxreader?color=ee8449&style=flat-square)](#contributors)
-
-
-# Warning!
-### New version (0.4.0+ is not compatible with previous versions)
-### Breaking changes between versions **0.3.15** and **0.4.0**.
- - Due to: new way of reading TPX and LX extensions in TCX files
 
 ## Objective
 
