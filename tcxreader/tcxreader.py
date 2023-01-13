@@ -36,8 +36,9 @@ class TCXReader:
                             if lap.tag == GARMIN_XML_SCHEMA + 'Lap':
                                 for lap_child in lap:
                                     if lap_child.tag == GARMIN_XML_SCHEMA + 'Calories':
-                                        tcx_exercise.calories += int(lap_child.text)
-                                        tcx_lap.calories += int(lap_child.text)
+                                        calories = int(round(float(lap_child.text)))
+                                        tcx_exercise.calories += calories
+                                        tcx_lap.calories += calories
                                     if lap_child.tag == GARMIN_XML_SCHEMA + 'DistanceMeters':
                                         tcx_exercise.distance += float(lap_child.text)
                                         tcx_lap.distance += float(lap_child.text)
@@ -113,12 +114,22 @@ class TCXReader:
         index = 0
         for trackpoint_data in trackpoint:
             if trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Time':
-               try:
-                  tcx_point.time = datetime.datetime.strptime(
-			            trackpoint_data.text, '%Y-%m-%dT%H:%M:%S.%fZ' )
-               except ValueError:
-                  tcx_point.time = datetime.datetime.strptime(
-			            trackpoint_data.text, '%Y-%m-%dT%H:%M:%SZ' )
+                for pat in (
+                    "%Y-%m-%dT%H:%M:%S.%fZ",  # Zulu time, fractional seconds.
+                    "%Y-%m-%dT%H:%M:%S.%f%z",  # Zulu time via explicit HH:MM offset, fractional seconds.
+                    "%Y-%m-%dT%H:%M:%SZ",  # Zulu time, integer seconds
+                ):
+                    try:
+                        tcx_point.time = datetime.datetime.strptime(
+                            trackpoint_data.text, pat
+                        )
+                        break
+                    except ValueError:
+                        continue
+
+                if not tcx_point.time:
+                    raise ValueError(f'Cannot parse time {trackpoint_data.text!r}')
+
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Position':
                 for position in trackpoint_data:
                     if position.tag == GARMIN_XML_SCHEMA + "LatitudeDegrees":
