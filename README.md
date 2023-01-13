@@ -6,6 +6,18 @@
 
 **tcxreader** is a reader for Garmin's TCX file format. It also works well with missing data!
 
+---
+
+[![PyPI Version](https://img.shields.io/pypi/v/tcxreader.svg)](https://pypi.python.org/pypi/tcxreader)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/tcxreader.svg)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/tcxreader.svg)
+[![Downloads](https://pepy.tech/badge/tcxreader)](https://pepy.tech/project/tcxreader)
+![GitHub repo size](https://img.shields.io/github/repo-size/alenrajsp/tcxreader?style=flat-square)
+[![GitHub license](https://img.shields.io/github/license/alenrajsp/tcxreader.svg)](https://github.com/alenrajsp/tcxreader/blob/master/LICENSE)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/alenrajsp/tcxreader.svg)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/alenrajsp/tcxreader.svg)](http://isitmaintained.com/project/alenrajsp/tcxreader "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/alenrajsp/tcxreader.svg)](http://isitmaintained.com/project/alenrajsp/tcxreader "Percentage of issues still open")
+
 # Warning!
 ### New version (0.4.0+ is not compatible with previous versions)
 ### Breaking changes between versions **0.3.15** and **0.4.0**.
