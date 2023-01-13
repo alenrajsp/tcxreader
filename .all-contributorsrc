@@ -27,6 +27,15 @@
         "platform",
         "test"
       ]
+    },
+    {
+      "login": "johnleeming",
+      "name": "johnleeming",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13801070?v=4",
+      "profile": "https://github.com/johnleeming",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
