@@ -15,6 +15,15 @@
         "code",
         "maintenance"
       ]
+    },
+    {
+      "login": "fortysix2ahead",
+      "name": "fortysix2ahead",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40423757?v=4",
+      "profile": "https://github.com/fortysix2ahead",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
