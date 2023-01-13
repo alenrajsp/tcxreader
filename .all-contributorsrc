@@ -17,6 +17,15 @@
       ]
     },
     {
+      "login": "fortysix2ahead",
+      "name": "fortysix2ahead",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40423757?v=4",
+      "profile": "https://github.com/fortysix2ahead",
+      "contributions": [
+        "bug"
+        ]
+        },
+    {
       "login": "firefly-cpp",
       "name": "Iztok Fister Jr.",
       "avatar_url": "https://avatars.githubusercontent.com/u/1633361?v=4",
@@ -33,6 +42,15 @@
       "name": "johnleeming",
       "avatar_url": "https://avatars.githubusercontent.com/u/13801070?v=4",
       "profile": "https://github.com/johnleeming",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "rpstar",
+      "name": "rpstar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10442282?v=4",
+      "profile": "https://github.com/rpstar",
       "contributions": [
         "bug"
       ]
