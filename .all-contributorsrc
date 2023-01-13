@@ -23,6 +23,18 @@
       "profile": "https://github.com/fortysix2ahead",
       "contributions": [
         "bug"
+        ]
+        },
+    {
+      "login": "firefly-cpp",
+      "name": "Iztok Fister Jr.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1633361?v=4",
+      "profile": "http://www.iztok-jr-fister.eu/",
+      "contributions": [
+        "data",
+        "mentoring",
+        "platform",
+        "test"
       ]
     }
   ],
