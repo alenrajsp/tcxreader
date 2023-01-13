@@ -17,7 +17,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/alenrajsp/tcxreader.svg)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/alenrajsp/tcxreader.svg)](http://isitmaintained.com/project/alenrajsp/tcxreader "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/alenrajsp/tcxreader.svg)](http://isitmaintained.com/project/alenrajsp/tcxreader "Percentage of issues still open")
-[![All Contributors](https://img.shields.io/github/all-contributors/projectOwner/projectName?color=ee8449&style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/github/all-contributors/alenrajsp/tcxreader?color=ee8449&style=flat-square)](#contributors)
 
 
 # Warning!
