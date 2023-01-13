@@ -27,6 +27,15 @@
         "platform",
         "test"
       ]
+    },
+    {
+      "login": "rpstar",
+      "name": "rpstar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10442282?v=4",
+      "profile": "https://github.com/rpstar",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
