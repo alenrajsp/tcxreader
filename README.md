@@ -1,3 +1,7 @@
+<div width="200" style="background-color: white; width: 200px">
+ <img width="200" style="margin-bottom:-8px" src="https://raw.githubusercontent.com/alenrajsp/tcxreader/main/.github/logo/logo-white-background.png">
+</div>
+
 **tcxreader** is a reader for Garmin's TCX file format. It also works well with missing data!
 
 ---
