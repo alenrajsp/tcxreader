@@ -23,8 +23,8 @@
       "profile": "https://github.com/fortysix2ahead",
       "contributions": [
         "bug"
-        ]
-        },
+      ]
+    },
     {
       "login": "firefly-cpp",
       "name": "Iztok Fister Jr.",
@@ -53,6 +53,15 @@
       "profile": "https://github.com/rpstar",
       "contributions": [
         "bug"
+      ]
+    },
+    {
+      "login": "jlrobins",
+      "name": "James Robinson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1128313?v=4",
+      "profile": "http://relatable.dev/",
+      "contributions": [
+        "maintenance"
       ]
     }
   ],
