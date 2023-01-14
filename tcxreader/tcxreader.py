@@ -118,6 +118,7 @@ class TCXReader:
                     "%Y-%m-%dT%H:%M:%S.%fZ",  # Zulu time, fractional seconds.
                     "%Y-%m-%dT%H:%M:%S.%f%z",  # Zulu time via explicit HH:MM offset, fractional seconds.
                     "%Y-%m-%dT%H:%M:%SZ",  # Zulu time, integer seconds
+                    "%Y-%m-%dT%H:%M:%S%z"  # Zulu time via explicit HH:MM offset, integer seconds.
                 ):
                     try:
                         tcx_point.time = datetime.datetime.strptime(

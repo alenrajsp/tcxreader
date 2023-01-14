@@ -178,7 +178,7 @@ All tags are recorded in the **TCXLap** **lx_ext** dictionary
 Datasets available and used in the examples on the following links: [DATASET1](http://iztok-jr-fister.eu/static/publications/Sport5.zip)
 , [DATASET2](http://iztok-jr-fister.eu/static/css/datasets/Sport.zip), [DATASET3](https://github.com/firefly-cpp/tcx-test-files).
 
-## Licence
+## License
 
 This package is distributed under the MIT License. This license can be found online
 at [http://www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT).
