@@ -1,8 +1,7 @@
 # - *- coding: utf- 8 - *-
-
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.md", encoding='UTF-8', mode="r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
@@ -22,5 +21,5 @@ setuptools.setup(
         "Development Status :: 4 - Beta",
     ],
     python_requires='>=3.6',
-    test_suite="tests",
+    test_suite="tests"
 )
