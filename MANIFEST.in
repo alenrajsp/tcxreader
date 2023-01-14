@@ -1,4 +1,7 @@
 recursive-include tcxreader *
-recursive-include example_data *
-recursive-include examples *
+recursive-exclude example_data *
+recursive-exclude examples *
+recursive-exclude tests *
+recursive-exclude tcxreader.tests *
+prune */tests
 include LICENSE
