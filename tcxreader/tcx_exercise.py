@@ -39,7 +39,7 @@ class TCXExercise:
 
         """
 
-        self.trackpoints:TCXTrackPoint = trackpoints
+        self.trackpoints:List[TCXTrackPoint] = trackpoints
         self.laps:List[TCXLap] = laps
         self.activity_type:str = activity_type
         self.calories = calories
