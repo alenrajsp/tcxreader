@@ -1,22 +1,33 @@
 # Changelog
 
 ## [v0.4.4](https://github.com/alenrajsp/tcxreader/tree/v0.4.4) (2023-01-14)
+- greatly reduced package size 19kb now, 450kb previously, by removing the example .tcx files included in the pypi distribution. They will still be available on GitHub of course.
 
 ## [v0.4.3](https://github.com/alenrajsp/tcxreader/tree/v0.4.3) (2023-01-14)
+- bugfix for reading time formats (e.g. timezone, fractional time)
 
 ## [v0.4.2](https://github.com/alenrajsp/tcxreader/tree/v0.4.2) (2022-10-04)
+- bugfix for reading heartrates (#19 )
 
 ## [v0.4.1](https://github.com/alenrajsp/tcxreader/tree/v0.4.1) (2022-08-08)
+- bugfix for reading lap extensions (LX)
 
 ## [v0.4.0](https://github.com/alenrajsp/tcxreader/tree/v0.4.0) (2022-08-08)
+- Support for all Trackpoint (TPX) and Lap (LX) extensions
+- New TCXExercise support for laps
+- **breaking changes compared to 0.3.15**
 
 ## [v0.3.15](https://github.com/alenrajsp/tcxreader/tree/v0.3.15) (2022-07-26)
+- Added support for sup files #14 and added basic support for reading the Author tags.
 
 ## [v0.3.10](https://github.com/alenrajsp/tcxreader/tree/v0.3.10) (2022-03-24)
+- removed maya dependency
 
 ## [v0.3.9](https://github.com/alenrajsp/tcxreader/tree/v0.3.9) (2022-03-23)
-
+- bugfixes in the tcx reader (hr_max)
+- @firefly-cpp added tests
 ## [v0.3](https://github.com/alenrajsp/tcxreader/tree/v0.3) (2020-12-02)
+- initial release
 
 
 
