@@ -1,0 +1,25 @@
+name: Generate changelog
+
+on:
+  push:
+    branches:
+      - main    # Set a branch to monitor for changes
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate changelog
+        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push if it changed
+        run: |-
+          git diff
+          git config --global user.email "changelog-bot@example.com"
+          git config --global user.name "Changelog Bot"
+          git diff --quiet || (git add CHANGELOG.md && git commit -m "Update CHANGELOG.md" && git push)
