@@ -202,6 +202,7 @@ at your own risk!
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/johnleeming"><img src="https://avatars.githubusercontent.com/u/13801070?v=4?s=100" width="100px;" alt="johnleeming"/><br /><sub><b>johnleeming</b></sub></a><br /><a href="https://github.com/alenrajsp/tcxreader/issues?q=author%3Ajohnleeming" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/rpstar"><img src="https://avatars.githubusercontent.com/u/10442282?v=4?s=100" width="100px;" alt="rpstar"/><br /><sub><b>rpstar</b></sub></a><br /><a href="https://github.com/alenrajsp/tcxreader/issues?q=author%3Arpstar" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://relatable.dev/"><img src="https://avatars.githubusercontent.com/u/1128313?v=4?s=100" width="100px;" alt="James Robinson"/><br /><sub><b>James Robinson</b></sub></a><br /><a href="#maintenance-jlrobins" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/johwiebe"><img src="https://avatars.githubusercontent.com/u/33023818?v=4?s=100" width="100px;" alt="johwiebe"/><br /><sub><b>johwiebe</b></sub></a><br /><a href="https://github.com/alenrajsp/tcxreader/issues?q=author%3Ajohwiebe" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>

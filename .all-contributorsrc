@@ -63,6 +63,15 @@
       "contributions": [
         "maintenance"
       ]
+    },
+    {
+      "login": "johwiebe",
+      "name": "johwiebe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33023818?v=4",
+      "profile": "https://github.com/johwiebe",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -70,5 +79,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "tcxreader",
-  "projectOwner": "alenrajsp"
+  "projectOwner": "alenrajsp",
+  "commitType": "docs"
 }
