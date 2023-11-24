@@ -2,9 +2,8 @@
 Simple example of using the TCX reader!
 """
 from tcxreader.tcxreader import TCXReader, TCXExercise
-
 tcx_reader = TCXReader()
-file_location = '../example_data/cross-country-skiing_activity_1.tcx'
+file_location = './example_data/15.tcx'
 
 data: TCXExercise = tcx_reader.read(file_location)
 

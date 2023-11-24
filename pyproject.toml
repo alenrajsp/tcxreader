@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "tcxreader"
+version = "0.4.5"
+description = "tcxreader is a reader for Garmin’s TCX file format. It also works well with missing data!"
+authors = ["Alen Rajšp <alen.rajsp@gmail.com>"]
+license = "MIT"
+homepage = "https://github.com/alenrajsp/tcxreader"
+repository = "https://github.com/alenrajsp/tcxreader"
+classifiers = [
+    "Programming Language :: Python :: 3.6",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta"
+]
+packages = [
+    {include = "tcxreader"}
+]
+include = ["README.md", "LICENSE"]
+exclude= ["tests", "examples", "tcxreader/tests"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+# Add your development dependencies here (e.g., testing frameworks)
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+

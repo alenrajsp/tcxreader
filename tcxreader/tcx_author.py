@@ -1,7 +1,3 @@
-from tcxreader.tcx_track_point import TCXTrackPoint
-from datetime import datetime
-
-
 class TCXAuthor:
     def __init__(self, name: str = None, version_major: int = None, version_minor: int = None, build_major: int = None,
                  build_minor: int = None):
