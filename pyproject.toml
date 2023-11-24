@@ -15,7 +15,12 @@ classifiers = [
 packages = [
     {include = "tcxreader"}
 ]
-include = ["README.md", "LICENSE"]
+
+include = [
+    { path="LICENSE", format="sdist" },
+    { path="README.md", format="sdist" }
+]
+
 exclude= ["tests", "examples", "tcxreader/tests"]
 
 [tool.poetry.dependencies]
