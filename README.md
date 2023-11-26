@@ -50,7 +50,7 @@ from tcxreader.tcxreader import TCXReader, TCXTrackPoint
 tcx_reader = TCXReader()
 file_location = 'example_data/cross-country-skiing_activity_1.tcx'
 
-data: TCXTrackPoint = tcx_reader.read(file_location)
+data: TCXExercise = tcx_reader.read(file_location)
 """ Example output:
 data = {TCXExercise}
  activity_type = {str} 'Other'
