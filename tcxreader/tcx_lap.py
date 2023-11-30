@@ -5,57 +5,57 @@ from typing import List
 
 class TCXLap:
     def __init__(self, trackpoints: List[TCXTrackPoint] = None, calories: int = None,
-                 hr_avg: float = None, hr_max: float = None, hr_min=None, max_speed: float = None,
+                 hr_avg: float = None, hr_max: int = None, hr_min: int = None, max_speed: float = None,
                  avg_speed: float = None, start_time: datetime = None, end_time: datetime = None,
                  duration: float = None, cadence_avg: float = None, cadence_max: float = None, ascent: float = None,
                  descent: float = None, distance: float = None, altitude_avg: float = None, altitude_min: float = None,
-                 altitude_max: float = None, lx_ext:dict = None, tpx_ext_stats: dict = None,
+                 altitude_max: float = None, lx_ext: dict = None, tpx_ext_stats: dict = None,
                  ):
         """
         Similar to TCXExercise, but is a container class for a lap.
-        :param tpx_ext_stats: contains statistics (min, max, avg) of TPX extenstion data of trackpoints
-        :param lx_ext: contains LX extension data
-        :param trackpoints: List of TCXTrackPoint objects
-        :param calories: total calories used in an exercise
-        :param hr_avg: maxiumum heartrate achieved during the exercise
-        :param hr_max: average heartrate during the exercise
-        :param hr_min: minimum heartrate achieved during the exercise
-        :param avg_speed: average speed during the exercise (km/h)
-        :param start_time: datetime of exercise start
-        :param end_time: datetime of exercise end
-        :param duration: duration of exercise in seconds
-        :param cadence_avg: average cadence during the exercise
-        :param cadence_max: maximum cadence during the exercise
-        :param ascent: total meters of ascent during the exercise
-        :param descent: total meters of descent during the exercise
-        :param distance: total distance of exercise in meters
-        :param altitude_avg: average altitude in meters
-        :param altitude_min: minimum altitude during the exercise
-        :param altitude_max: maxiumum altitude during the exersice
+        :param tpx_ext_stats: Contains statistics (min, max, avg) of TPX extension data of trackpoints.
+        :param lx_ext: Contains LX extension data.
+        :param trackpoints: List of TCXTrackPoint objects.
+        :param calories: Total calories used in an exercise.
+        :param hr_avg: Maximum heartrate achieved during the exercise.
+        :param hr_max: Average heartrate during the exercise.
+        :param hr_min: Minimum heartrate achieved during the exercise.
+        :param avg_speed: Average speed during the exercise (km/h).
+        :param start_time: Datetime of exercise start.
+        :param end_time: Datetime of exercise end.
+        :param duration: Duration of exercise in seconds.
+        :param cadence_avg: Average cadence during the exercise.
+        :param cadence_max: Maximum cadence during the exercise.
+        :param ascent: Total meters of ascent during the exercise.
+        :param descent: Total meters of descent during the exercise.
+        :param distance: Total distance of exercise in meters.
+        :param altitude_avg: Average altitude in meters.
+        :param altitude_min: Minimum altitude during the exercise.
+        :param altitude_max: Maximum altitude during the exercise.
 
         """
 
-        self.trackpoints:List[TCXTrackPoint] = trackpoints
-        self.calories:int = calories
-        self.hr_avg:float = hr_avg
-        self.hr_max:int = hr_max
-        self.hr_min:int = hr_min
+        self.trackpoints: List[TCXTrackPoint] = trackpoints
+        self.calories: int = calories
+        self.hr_avg: float = hr_avg
+        self.hr_max: int = hr_max
+        self.hr_min: int = hr_min
         self.duration = duration
-        self.max_speed:float = max_speed
-        self.avg_speed:float = avg_speed
-        self.start_time = start_time
-        self.end_time = end_time
-        self.cadence_avg = cadence_avg
-        self.cadence_max = cadence_max
-        self.ascent = ascent
-        self.descent = descent
-        self.distance = distance
-        self.altitude_avg = altitude_avg
-        self.altitude_min = altitude_min
-        self.altitude_max = altitude_max
-        self.tpx_ext_stats:dict = tpx_ext_stats
-        if self.tpx_ext_stats==None:
-            self.tpx_ext_stats={}
-        self.lx_ext:dict = lx_ext
-        if self.lx_ext==None:
-            self.lx_ext={}
+        self.max_speed: float = max_speed
+        self.avg_speed: float = avg_speed
+        self.start_time: datetime = start_time
+        self.end_time: datetime = end_time
+        self.cadence_avg: float = cadence_avg
+        self.cadence_max: float = cadence_max
+        self.ascent: float = ascent
+        self.descent: float = descent
+        self.distance: float = distance
+        self.altitude_avg: float = altitude_avg
+        self.altitude_min: float = altitude_min
+        self.altitude_max: float = altitude_max
+        self.tpx_ext_stats: dict = tpx_ext_stats
+        if self.tpx_ext_stats == None:
+            self.tpx_ext_stats: dict = {}
+        self.lx_ext: dict = lx_ext
+        if self.lx_ext == None:
+            self.lx_ext: dict = {}

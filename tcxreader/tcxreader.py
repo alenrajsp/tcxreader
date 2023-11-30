@@ -12,13 +12,13 @@ GARMIN_XML_EXTENSIONS = '{http://www.garmin.com/xmlschemas/ActivityExtension/v2}
 
 class TCXReader:
     def __init__(self):
-        self = self
+        pass
 
     def read(self, fileLocation: str, only_gps: bool = True) -> TCXExercise:
         """
         :param only_gps: If set to True erases any Trackpoints at the start and end of the exercise without GPS data.
-        :param fileLocation: location of the tcx file
-        :return: A list of TCXTrackPoint objects.
+        :param fileLocation: Location of the TCX file.
+        :returns: A list of TCXTrackPoint objects.
         """
 
         tcx_exercise = TCXExercise(calories=0, distance=0, tpx_ext_stats={}, lx_ext={}, laps=[])
@@ -52,7 +52,7 @@ class TCXReader:
                                 if lap_child.tag == GARMIN_XML_SCHEMA + 'Extensions':
                                     extensions = lap_child
                                     for extension in extensions:
-                                        if extension.tag == GARMIN_XML_EXTENSIONS+'LX':
+                                        if extension.tag == GARMIN_XML_EXTENSIONS + 'LX':
                                             for lx_extension in extension:
 
                                                 tag_name = lx_extension.tag.replace(GARMIN_XML_EXTENSIONS, "")
@@ -71,36 +71,35 @@ class TCXReader:
                                                         tcx_exercise.lx_ext[tag_name] = tag_value
 
                                                 tcx_lap.lx_ext[tag_name] = tag_value
-                            if len(tcx_lap.trackpoints)>0:
+                            if len(tcx_lap.trackpoints) > 0:
                                 tcx_exercise.laps.append(tcx_lap)
-            if node.tag == GARMIN_XML_SCHEMA+'Author':
+            if node.tag == GARMIN_XML_SCHEMA + 'Author':
                 author = TCXAuthor()
                 for author_node in node:
-                    if author_node.tag == GARMIN_XML_SCHEMA+'Name':
-                        author.name=author_node.text
-                    elif author_node.tag == GARMIN_XML_SCHEMA+'Build':
+                    if author_node.tag == GARMIN_XML_SCHEMA + 'Name':
+                        author.name = author_node.text
+                    elif author_node.tag == GARMIN_XML_SCHEMA + 'Build':
                         for build_node in author_node:
-                            if build_node.tag == GARMIN_XML_SCHEMA+'Version':
+                            if build_node.tag == GARMIN_XML_SCHEMA + 'Version':
                                 for version_node in build_node:
-                                    if version_node.tag == GARMIN_XML_SCHEMA+'VersionMajor':
+                                    if version_node.tag == GARMIN_XML_SCHEMA + 'VersionMajor':
                                         author.version_major = int(version_node.text)
-                                    elif version_node.tag == GARMIN_XML_SCHEMA+'VersionMinor':
+                                    elif version_node.tag == GARMIN_XML_SCHEMA + 'VersionMinor':
                                         author.version_minor = int(version_node.text)
-                                    elif version_node.tag == GARMIN_XML_SCHEMA+'BuildMajor':
+                                    elif version_node.tag == GARMIN_XML_SCHEMA + 'BuildMajor':
                                         author.build_major = int(version_node.text)
-                                    elif version_node.tag == GARMIN_XML_SCHEMA+'BuildMinor':
+                                    elif version_node.tag == GARMIN_XML_SCHEMA + 'BuildMinor':
                                         author.build_minor = int(version_node.text)
                 tcx_exercise.author = author
 
-
         # remove_data_at_start_and_end_without_gps. Those stats are not taken for distance and hr measurements!
         if only_gps == True:
-            removalList = []
+            removal_list = []
             for index in range(len(trackpoints)):
                 if trackpoints[index].longitude == None:
-                    removalList.append(index)
+                    removal_list.append(index)
 
-            for removal in sorted(removalList, reverse=True):
+            for removal in sorted(removal_list, reverse=True):
                 del trackpoints[removal]
 
         tcx_exercise.trackpoints = trackpoints
@@ -110,15 +109,14 @@ class TCXReader:
             self.__find_hi_lo_avg(lap, only_gps)
         return tcx_exercise
 
-    def trackpoint_parser(self, tcx_point:TCXTrackPoint, trackpoint):
-        index = 0
+    def trackpoint_parser(self, tcx_point: TCXTrackPoint, trackpoint):
         for trackpoint_data in trackpoint:
             if trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Time':
                 for pat in (
-                    "%Y-%m-%dT%H:%M:%S.%fZ",  # Zulu time, fractional seconds.
-                    "%Y-%m-%dT%H:%M:%S.%f%z",  # Zulu time via explicit HH:MM offset, fractional seconds.
-                    "%Y-%m-%dT%H:%M:%SZ",  # Zulu time, integer seconds
-                    "%Y-%m-%dT%H:%M:%S%z"  # Zulu time via explicit HH:MM offset, integer seconds.
+                        "%Y-%m-%dT%H:%M:%S.%fZ",  # Zulu time, fractional seconds.
+                        "%Y-%m-%dT%H:%M:%S.%f%z",  # Zulu time via explicit HH:MM offset, fractional seconds.
+                        "%Y-%m-%dT%H:%M:%SZ",  # Zulu time, integer seconds
+                        "%Y-%m-%dT%H:%M:%S%z"  # Zulu time via explicit HH:MM offset, integer seconds.
                 ):
                     try:
                         tcx_point.time = datetime.datetime.strptime(
@@ -154,12 +152,12 @@ class TCXReader:
                             tag_name = tpx_extension.tag.replace(GARMIN_XML_EXTENSIONS, "")
                             tag_value = tpx_extension.text
                             if '.' in tag_value:
-                                tag_value=float(tag_value)
+                                tag_value = float(tag_value)
                             else:
-                                tag_value=int(tag_value)
-                            tcx_point.tpx_ext[tag_name]=tag_value
+                                tag_value = int(tag_value)
+                            tcx_point.tpx_ext[tag_name] = tag_value
 
-    def __find_hi_lo_avg(self, tcx: TCXExercise, only_gps:bool) -> TCXExercise:
+    def __find_hi_lo_avg(self, tcx: TCXExercise, only_gps: bool) -> TCXExercise:
         trackpoints = tcx.trackpoints
 
         if only_gps == True:
@@ -172,7 +170,6 @@ class TCXReader:
                 del trackpoints[removal]
 
         tcx.trackpoints = trackpoints
-
 
         hr = []
         altitude = []
@@ -226,13 +223,10 @@ class TCXReader:
                         values[extension].append(trackpoint.tpx_ext[extension])
 
         for key in values:
-            tcx.tpx_ext_stats[key]={}
+            tcx.tpx_ext_stats[key] = {}
             tcx.tpx_ext_stats[key]["min"] = min(values[key])
             tcx.tpx_ext_stats[key]["max"] = max(values[key])
-            tcx.tpx_ext_stats[key]["avg"] = sum(values[key])/len(values[key])
-
-
-
+            tcx.tpx_ext_stats[key]["avg"] = sum(values[key]) / len(values[key])
 
         if len(trackpoints) > 2:
             tcx.start_time = trackpoints[0].time
@@ -243,16 +237,16 @@ class TCXReader:
             skip = True
             max_speed = 0.0
             for index in range(len(tcx.trackpoints)):
-                if skip!=True:
+                if skip != True:
                     try:
-                        time = abs((tcx.trackpoints[index-1].time - tcx.trackpoints[index].time).total_seconds())
-                        distance = abs(tcx.trackpoints[index-1].distance - tcx.trackpoints[index].distance)
-                        speed = distance/time*3.6
-                        if speed>max_speed:
-                            max_speed=speed
+                        time = abs((tcx.trackpoints[index - 1].time - tcx.trackpoints[index].time).total_seconds())
+                        distance = abs(tcx.trackpoints[index - 1].distance - tcx.trackpoints[index].distance)
+                        speed = distance / time * 3.6
+                        if speed > max_speed:
+                            max_speed = speed
                     except Exception:
-                        a=100
-                skip=False
-            tcx.max_speed=max_speed
+                        a = 100
+                skip = False
+            tcx.max_speed = max_speed
 
         return tcx

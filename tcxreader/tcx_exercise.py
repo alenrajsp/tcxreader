@@ -11,54 +11,54 @@ class TCXExercise:
                  avg_speed: float = None, start_time: datetime = None, end_time: datetime = None,
                  duration: float = None, cadence_avg: float = None, cadence_max: float = None, ascent: float = None,
                  descent: float = None, distance: float = None, altitude_avg: float = None, altitude_min: float = None,
-                 altitude_max: float = None, author = None,
-                 tpx_ext_stats:dict = None, lx_ext:dict = None, laps:List[TCXLap]=None):
+                 altitude_max: float = None, author: TCXAuthor=None,
+                 tpx_ext_stats: dict = None, lx_ext: dict = None, laps: List[TCXLap] = None):
         """
-        :param trackpoints: List of TCXTrackPoint objects
-        :param activity_type: sport string
-        :param calories: total calories used in an exercise
-        :param hr_avg: maxiumum heartrate achieved during the exercise
-        :param hr_max: average heartrate during the exercise
-        :param hr_min: minimum heartrate achieved during the exercise
-        :param avg_speed: average speed during the exercise (km/h)
-        :param start_time: datetime of exercise start
-        :param end_time: datetime of exercise end
-        :param duration: duration of exercise in seconds
-        :param cadence_avg: average cadence during the exercise
-        :param cadence_max: maximum cadence during the exercise
-        :param ascent: total meters of ascent during the exercise
-        :param descent: total meters of descent during the exercise
-        :param distance: total distance of exercise in meters
-        :param altitude_avg: average altitude in meters
-        :param altitude_min: minimum altitude during the exercise
-        :param altitude_max: maxiumum altitude during the exersice
-        :param author: describes who recorded the data, e.g. which device
-        :param tpx_ext_stats: contains statistics (min, max, avg) of TPX extenstion data of trackpoints
-        :param lx_ext: contains sum of LX extension data for each key in LX extension tag
-        :param laps: contains subset of data for each lap
+        :param trackpoints: List of TCXTrackPoint objects.
+        :param activity_type: Sport string e.g. cycling.
+        :param calories: Total calories used in an exercise.
+        :param hr_avg: Maximum heartrate achieved during the exercise.
+        :param hr_max: Average heartrate during the exercise.
+        :param hr_min: Minimum heartrate achieved during the exercise.
+        :param avg_speed: Average speed during the exercise (km/h).
+        :param start_time: Datetime of exercise start.
+        :param end_time: Datetime of exercise end.
+        :param duration: Duration of exercise in seconds.
+        :param cadence_avg: Average cadence during the exercise.
+        :param cadence_max: Maximum cadence during the exercise.
+        :param ascent: Total meters of ascent during the exercise.
+        :param descent: Total meters of descent during the exercise.
+        :param distance: Total distance of exercise in meters.
+        :param altitude_avg: Average altitude in meters.
+        :param altitude_min: Minimum altitude during the exercise.
+        :param altitude_max: Maximum altitude during the exersice.
+        :param author: Describes who recorded the data, e.g. which device.
+        :param tpx_ext_stats: Contains statistics (min, max, avg) of TPX extension data of trackpoints.
+        :param lx_ext: Contains sum of LX extension data for each key in LX extension tag.
+        :param laps: Contains subset of data for each lap.
 
         """
 
-        self.trackpoints:List[TCXTrackPoint] = trackpoints
-        self.laps:List[TCXLap] = laps
-        self.activity_type:str = activity_type
-        self.calories = calories
-        self.hr_avg = hr_avg
-        self.hr_max = hr_max
-        self.hr_min = hr_min
-        self.duration = duration
-        self.max_speed = max_speed
-        self.avg_speed = avg_speed
-        self.start_time = start_time
-        self.end_time = end_time
-        self.cadence_avg = cadence_avg
-        self.cadence_max = cadence_max
-        self.ascent = ascent
-        self.descent = descent
-        self.distance = distance
-        self.altitude_avg = altitude_avg
-        self.altitude_min = altitude_min
-        self.altitude_max = altitude_max
-        self.author:TCXAuthor = author
-        self.tpx_ext_stats:dict = tpx_ext_stats
-        self.lx_ext:dict = lx_ext
+        self.trackpoints: List[TCXTrackPoint] = trackpoints
+        self.laps: List[TCXLap] = laps
+        self.activity_type: str = activity_type
+        self.calories: int = calories
+        self.hr_avg: float = hr_avg
+        self.hr_max: float = hr_max
+        self.hr_min: float = hr_min
+        self.duration: float = duration
+        self.max_speed: float = max_speed
+        self.avg_speed: float = avg_speed
+        self.start_time: datetime = start_time
+        self.end_time: datetime = end_time
+        self.cadence_avg: float = cadence_avg
+        self.cadence_max: float = cadence_max
+        self.ascent: float = ascent
+        self.descent: float = descent
+        self.distance: float = distance
+        self.altitude_avg: float = altitude_avg
+        self.altitude_min: float = altitude_min
+        self.altitude_max: float = altitude_max
+        self.author: TCXAuthor = author
+        self.tpx_ext_stats: dict = tpx_ext_stats
+        self.lx_ext: dict = lx_ext
