@@ -50,6 +50,10 @@ from tcxreader.tcxreader import TCXReader, TCXTrackPoint
 tcx_reader = TCXReader()
 file_location = 'example_data/cross-country-skiing_activity_1.tcx'
 
+"""
+Minor warning, the read method also has a default parameter of only_gps (tcx_readerread(self, fileLocation: str, only_gps: bool = True)) set to true. If set to True erases any Trackpoints at the start and end of the exercise without GPS data.
+"""
+
 data: TCXExercise = tcx_reader.read(file_location)
 """ Example output:
 data = {TCXExercise}
