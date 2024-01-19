@@ -1,26 +1,8 @@
 # Changelog
 
-## [v0.4.6](https://github.com/alenrajsp/tcxreader/tree/v0.4.6) (2023-11-30)
+## [v0.3.9](https://github.com/firefly-cpp/tcxreader/tree/v0.3.9) (2022-03-23)
 
-## [v0.4.5](https://github.com/alenrajsp/tcxreader/tree/v0.4.5) (2023-11-24)
-
-## [v0.4.4](https://github.com/alenrajsp/tcxreader/tree/v0.4.4) (2023-01-14)
-
-## [v0.4.3](https://github.com/alenrajsp/tcxreader/tree/v0.4.3) (2023-01-14)
-
-## [v0.4.2](https://github.com/alenrajsp/tcxreader/tree/v0.4.2) (2022-10-04)
-
-## [v0.4.1](https://github.com/alenrajsp/tcxreader/tree/v0.4.1) (2022-08-08)
-
-## [v0.4.0](https://github.com/alenrajsp/tcxreader/tree/v0.4.0) (2022-08-08)
-
-## [v0.3.15](https://github.com/alenrajsp/tcxreader/tree/v0.3.15) (2022-07-26)
-
-## [v0.3.10](https://github.com/alenrajsp/tcxreader/tree/v0.3.10) (2022-03-24)
-
-## [v0.3.9](https://github.com/alenrajsp/tcxreader/tree/v0.3.9) (2022-03-23)
-
-## [v0.3](https://github.com/alenrajsp/tcxreader/tree/v0.3) (2020-12-02)
+## [v0.3](https://github.com/firefly-cpp/tcxreader/tree/v0.3) (2020-12-02)
 
 
 
