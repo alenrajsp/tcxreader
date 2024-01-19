@@ -187,6 +187,12 @@ Datasets available and used in the examples on the following links: [DATASET1](h
 This package is distributed under the MIT License. This license can be found online
 at [http://www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT).
 
+## Related packages/frameworks
+
+[1] [sport-activities-features: A minimalistic toolbox for extracting features from sports activity files written in Python](https://github.com/firefly-cpp/sport-activities-features)
+
+[2] [AST-Monitor: A wearable Raspberry Pi computer for cyclists](https://github.com/firefly-cpp/AST-Monitor)
+
 ## Disclaimer
 
 This framework is provided as-is, and there are no guarantees that it fits your purposes or that it is bug-free. Use it
