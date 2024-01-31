@@ -21,7 +21,7 @@ class TCXReader:
     def __init__(self):
         pass
 
-    def read(self, fileLocation: str, only_gps: bool = True, null_value_handling: int | NullValueHandling = 1) -> TCXExercise:
+    def read(self, fileLocation: str, only_gps: bool = True, null_value_handling: int = 1) -> TCXExercise:
         """
         :param only_gps: If set to True erases any Trackpoints at the start and end of the exercise without GPS data.
         :param fileLocation: Location of the TCX file.
@@ -256,7 +256,7 @@ class TCXReader:
 
         return new_trackpoints
 
-    def __find_hi_lo_avg(self, tcx: TCXExercise|TCXLap, only_gps: bool) -> TCXExercise:
+    def __find_hi_lo_avg(self, tcx: TCXExercise, only_gps: bool) -> TCXExercise:
         trackpoints = tcx.trackpoints
 
         if only_gps == True:
