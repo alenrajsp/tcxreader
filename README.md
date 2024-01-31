@@ -19,8 +19,7 @@
 
 ## Objective
 
-This is a simple TCX reader which can read Garmin TCX file extension files. The package currently does not
-support laps and merges the whole exercise into one exercise object. The following data is currently parsed: longitude,
+This is a simple TCX reader which can read Garmin TCX file extension files.  The following data is currently parsed: longitude,
 latitude, elevation, time, distance, hr_value, cadence, watts, TPX_speed (extension). The following statistics are
 calculated for each exercise: calories, hr_avg, hr_max, hr_min, avg_speed, start_time, end_time, duration, cadence_avg,
 cadence_max, ascent, descent, distance, altitude_max, altitude_min, altitude_avg, steps and **author data**.
@@ -32,7 +31,6 @@ GitHub requests appreciated.
 ## Features
 
 Allows parsing / reading of TCX files.
-
 
 ## Installation
 
@@ -96,7 +94,7 @@ trackpoints = {list: 486} [TCXTrackpoint]
 
 Below figure explains the classes of **tcxreader** and the data they contain.
 
-## TCXReader()
+### TCXReader()
 User initializes the tcxreader by creating a **TCXReader** class instance. To read the data of a **TCX activity** the user must use
 **TCXReader.read(*filename*)** method. 
 The output of **read()** is an instance of **TCXExercise** class.
@@ -177,10 +175,21 @@ All tags are recorded in the **TCXLap** **lx_ext** dictionary
  <img width="100%" style="margin-bottom:-8px" src="https://raw.githubusercontent.com/alenrajsp/tcxreader/7c9af6dc88f9d83a8c6751b454f118220ecfd9a1/.github/images/data-explanation.svg">
 </div>
 
+## Missing data handling
+Due to the nature of the TCX file format, some data may be missing. The **tcxreader** can handle this in two ways:
+1) If data is missing at a TCX point it is set to **None**. (*default*)
+    - tcx_reader.read(file_location) (*default*)
+    - tcx_reader.read(file_location, null_value_handling=1) (*default*)
+    - tcx_reader.read(file_location, null_value_handling=NullValueHandling.NONE) (*default*)
+2) If data is missing at one or more TCX points it is linearly interpolated.
+   - tcx_reader.read(file_location, null_value_handling=2)
+   - tcx_reader.read(file_location, null_value_handling=NullValueHandling.LINEAR_INTERPOLATION)
+   
+This behavior can be set in **TCXReader.read()** method by the **null_value_handling** parameter, where either **int** value or **NullValueHandling** enum can be passed.
+
 ## Datasets
 
-Datasets available and used in the examples on the following links: [DATASET1](http://iztok-jr-fister.eu/static/publications/Sport5.zip)
-, [DATASET2](http://iztok-jr-fister.eu/static/css/datasets/Sport.zip), [DATASET3](https://github.com/firefly-cpp/tcx-test-files).
+Datasets available and used in the examples on the following links: [DATASET1](http://iztok-jr-fister.eu/static/publications/Sport5.zip), [DATASET2](http://iztok-jr-fister.eu/static/css/datasets/Sport.zip), [DATASET3](https://github.com/firefly-cpp/tcx-test-files).
 
 ## License
 

@@ -5,19 +5,27 @@ from tcxreader.tcx_author import TCXAuthor
 from tcxreader.tcx_exercise import TCXExercise
 from tcxreader.tcx_lap import TCXLap
 from tcxreader.tcx_track_point import TCXTrackPoint
+from enum import Enum
 
 GARMIN_XML_SCHEMA = '{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}'
 GARMIN_XML_EXTENSIONS = '{http://www.garmin.com/xmlschemas/ActivityExtension/v2}'
 
+class NullValueHandling(Enum):
+    """
+    Enum for handling null values in TCX file.
+    """
+    NONE = 1
+    LINEAR_INTERPOLATION = 2
 
 class TCXReader:
     def __init__(self):
         pass
 
-    def read(self, fileLocation: str, only_gps: bool = True) -> TCXExercise:
+    def read(self, fileLocation: str, only_gps: bool = True, null_value_handling: int | NullValueHandling = 1) -> TCXExercise:
         """
         :param only_gps: If set to True erases any Trackpoints at the start and end of the exercise without GPS data.
         :param fileLocation: Location of the TCX file.
+        :param null_value_handling: How to handle null values in TCX file. 1 = set to None, 2 = linear interpolation.
         :returns: A list of TCXTrackPoint objects.
         """
 
@@ -103,9 +111,13 @@ class TCXReader:
                 del trackpoints[removal]
 
         tcx_exercise.trackpoints = trackpoints
-
+        if null_value_handling == 2 or null_value_handling == NullValueHandling.LINEAR_INTERPOLATION:
+            tcx_exercise.trackpoints = self.__fill_none_with_averages(tcx_exercise.trackpoints)
         tcx_exercise = self.__find_hi_lo_avg(tcx_exercise, only_gps)
+
         for lap in tcx_exercise.laps:
+            if null_value_handling == 2 or null_value_handling == NullValueHandling.LINEAR_INTERPOLATION:
+                lap.trackpoints = self.__fill_none_with_averages(lap.trackpoints)
             self.__find_hi_lo_avg(lap, only_gps)
         return tcx_exercise
 
@@ -132,32 +144,119 @@ class TCXReader:
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Position':
                 for position in trackpoint_data:
                     if position.tag == GARMIN_XML_SCHEMA + "LatitudeDegrees":
-                        tcx_point.latitude = float(position.text)
+                        try:
+                            tcx_point.latitude = float(position.text)
+                        except (ValueError, TypeError):
+                            tcx_point.latitude = None
                     elif position.tag == GARMIN_XML_SCHEMA + "LongitudeDegrees":
-                        tcx_point.longitude = float(position.text)
+                        try:
+                            tcx_point.longitude = float(position.text)
+                        except (ValueError, TypeError):
+                            tcx_point.longitude = None
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'AltitudeMeters':
-                tcx_point.elevation = float(trackpoint_data.text)
+                try:
+                    tcx_point.elevation = float(trackpoint_data.text)
+                except (ValueError, TypeError):
+                    tcx_point.elevation = None
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'DistanceMeters':
-                tcx_point.distance = float(trackpoint_data.text)
+                try:
+                    tcx_point.distance = float(trackpoint_data.text)
+                except (ValueError, TypeError):
+                    tcx_point.distance = None
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'HeartRateBpm':
                 for heart_rate in trackpoint_data:
-                    tcx_point.hr_value = int(float(heart_rate.text))
+                    try:
+                        tcx_point.hr_value = int(float(heart_rate.text))
+                    except (ValueError, TypeError):
+                        tcx_point.hr_value = None
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Cadence':
-                tcx_point.cadence = int(trackpoint_data.text)
+                try:
+                    tcx_point.cadence = int(float(trackpoint_data.text))
+                except (ValueError, TypeError):
+                    tcx_point.cadence = None
             elif trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Extensions':
                 for extension in trackpoint_data:
                     if extension.tag == GARMIN_XML_EXTENSIONS + 'TPX':
                         # New extensions value parser!
                         for tpx_extension in extension:
                             tag_name = tpx_extension.tag.replace(GARMIN_XML_EXTENSIONS, "")
-                            tag_value = tpx_extension.text
-                            if '.' in tag_value:
-                                tag_value = float(tag_value)
-                            else:
-                                tag_value = int(tag_value)
-                            tcx_point.tpx_ext[tag_name] = tag_value
+                            try:
+                                tag_value = tpx_extension.text
+                                if '.' in tag_value:
+                                    tag_value = float(tag_value)
+                                else:
+                                    tag_value = int(tag_value)
+                                tcx_point.tpx_ext[tag_name] = tag_value
+                            except (ValueError, TypeError):
+                                tcx_point.tpx_ext[tag_name] = None
 
-    def __find_hi_lo_avg(self, tcx: TCXExercise, only_gps: bool) -> TCXExercise:
+    def __fill_none_with_averages(self, trackpoints):
+        """
+        Interpolates missing values in trackpoints with averages between the previous and next value.
+        :param trackpoints: List of TCXTrackPoint objects.
+        :return:
+        """
+        def interpolate(start, end, length):
+            step = (end - start) / (length + 1)
+            type_start = type(start)
+            return [type_start(start + step * i) for i in range(1, length + 1)]
+
+        # Interpolate for regular attributes
+        def interpolate_attribute(attr):
+            data = [getattr(tp, attr) for tp in trackpoints]
+            return __fill_none_with_averages_for_data(data)
+
+        # Interpolate for tpx_ext dictionary
+        def interpolate_tpx_ext(key):
+            data = [tp.tpx_ext.get(key) for tp in trackpoints]
+            return __fill_none_with_averages_for_data(data)
+
+        def __fill_none_with_averages_for_data(data):
+            result = []
+            i = 0
+            while i < len(data):
+                if data[i] is None:
+                    start_i = i - 1
+                    while i < len(data) and data[i] is None:
+                        i += 1
+                    end_i = i
+                    start_val = data[start_i] if start_i >= 0 else 0
+                    end_val = data[end_i] if end_i < len(data) else start_val
+                    result.extend(interpolate(start_val, end_val, end_i - start_i))
+                else:
+                    result.append(data[i])
+                    i += 1
+            return result
+
+        attrs_to_interpolate = ['longitude', 'latitude', 'elevation', 'distance', 'hr_value', 'cadence']
+        interpolated_attrs = {attr: interpolate_attribute(attr) for attr in attrs_to_interpolate}
+
+        # Identify all keys in tpx_ext across all trackpoints
+        tpx_keys = set()
+        for tp in trackpoints:
+            tpx_keys.update(tp.tpx_ext.keys())
+
+        interpolated_tpx_ext = {key: interpolate_tpx_ext(key) for key in tpx_keys}
+
+        # Construct new trackpoints with interpolated data
+        new_trackpoints = []
+        for i in range(len(trackpoints)):
+            new_tpx_ext = {key: interpolated_tpx_ext[key][i] for key in tpx_keys}
+            new_trackpoint = TCXTrackPoint(
+                longitude=interpolated_attrs['longitude'][i],
+                latitude=interpolated_attrs['latitude'][i],
+                elevation=interpolated_attrs['elevation'][i],
+                distance=interpolated_attrs['distance'][i],
+                hr_value=interpolated_attrs['hr_value'][i],
+                cadence=interpolated_attrs['cadence'][i],
+                tpx_ext=new_tpx_ext,
+                time=trackpoints[i].time
+            )
+            new_trackpoints.append(new_trackpoint)
+
+        return new_trackpoints
+
+    def __find_hi_lo_avg(self, tcx: TCXExercise|TCXLap, only_gps: bool) -> TCXExercise:
         trackpoints = tcx.trackpoints
 
         if only_gps == True:

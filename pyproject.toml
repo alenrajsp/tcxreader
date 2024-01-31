@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tcxreader"
-version = "0.4.6"
+version = "0.4.8"
 description = "tcxreader is a reader for Garmin’s TCX file format. It also works well with missing data!"
 authors = ["Alen Rajšp <alen.rajsp@gmail.com>"]
 license = "MIT"
@@ -21,7 +21,7 @@ include = [
     { path="README.md", format="sdist" }
 ]
 
-exclude= ["tests", "examples", "tcxreader/tests"]
+exclude= ["tests", "examples", "tcxreader/tests", "development"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
