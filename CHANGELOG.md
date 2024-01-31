@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.4.8](https://github.com/alenrajsp/tcxreader/tree/v0.4.8) (2024-01-31)
+
 ## [v0.4.6](https://github.com/alenrajsp/tcxreader/tree/v0.4.6) (2023-11-30)
 
 ## [v0.4.5](https://github.com/alenrajsp/tcxreader/tree/v0.4.5) (2023-11-24)
