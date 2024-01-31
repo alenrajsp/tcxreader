@@ -216,6 +216,7 @@ at your own risk!
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://martin-ueding.de/"><img src="https://avatars.githubusercontent.com/u/976924?v=4?s=100" width="100px;" alt="Martin Ueding"/><br /><sub><b>Martin Ueding</b></sub></a><br /><a href="https://github.com/alenrajsp/tcxreader/issues?q=author%3Amartin-ueding" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/simonpickering"><img src="https://avatars.githubusercontent.com/u/1830341?v=4?s=100" width="100px;" alt="Simon Pickering"/><br /><sub><b>Simon Pickering</b></sub></a><br /><a href="https://github.com/alenrajsp/tcxreader/issues?q=author%3Asimonpickering" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/rwinklerwilkes"><img src="https://avatars.githubusercontent.com/u/2768609?v=4?s=100" width="100px;" alt="Rich Winkler"/><br /><sub><b>Rich Winkler</b></sub></a><br /><a href="https://github.com/alenrajsp/tcxreader/issues?q=author%3Arwinklerwilkes" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
