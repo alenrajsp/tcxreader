@@ -62,3 +62,17 @@ class TCXExercise:
         self.author: TCXAuthor = author
         self.tpx_ext_stats: dict = tpx_ext_stats
         self.lx_ext: dict = lx_ext
+        
+    def trackpoints_to_dict(self) -> list:
+        """
+        Convert trackpoints to a list of dictionaries.
+        Returns:
+            list: A list of dictionaries containing trackpoint data.
+        """
+        trackpoint_dict = []
+            
+        for tp in self.trackpoints:
+            trackpoint_dict.append(tp.to_dict())
+                
+            
+        return trackpoint_dict
