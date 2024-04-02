@@ -34,5 +34,25 @@ class TCXTrackPoint(object):
         return f'Time:{time}\nLatitude:\t{latitude}\nLongitude:\t{longitude}\nElevation:\t{elevation}\nDistance:\t{distance}\n' \
                f'Heartrate:\t{hr_value}\nCadence:\t{cadence} \nTPX Extensions: {tpx_str}\n#############################'
 
+    def to_dict(self) -> dict:
+        """
+        Convert trackpoint to a dictionary.
+        Returns:
+            dict: A dictionary containing trackpoint data.
+        """
+        tp_dict = {
+                'time': self.time,
+                'longitude': self.longitude,
+                'latitude': self.latitude,
+                'distance': self.distance,
+                'elevation': self.elevation,
+                'hr_value': self.hr_value,
+                'cadence': self.cadence,
+            }
+        for key in self.tpx_ext:
+            tp_dict[key] = self.tpx_ext[key]
+        
+        return tp_dict
+    
     def __unicode__(self):
         return self.__str__()
