@@ -36,9 +36,8 @@ class TCXTrackPoint(object):
 
     def to_dict(self) -> dict:
         """
-        Convert trackpoint to a dictionary.
-        Returns:
-            dict: A dictionary containing trackpoint data.
+        Convert trackpoint (TCXTrackPoint) to a dictionary.
+        :return: A dictionary containing trackpoint data.
         """
         tp_dict = {
                 'time': self.time,

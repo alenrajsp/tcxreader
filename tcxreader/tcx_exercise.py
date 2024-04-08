@@ -14,6 +14,7 @@ class TCXExercise:
                  altitude_max: float = None, author: TCXAuthor=None,
                  tpx_ext_stats: dict = None, lx_ext: dict = None, laps: List[TCXLap] = None):
         """
+        Class for storing exercise data from a TCX file.
         :param trackpoints: List of TCXTrackPoint objects.
         :param activity_type: Sport string e.g. cycling.
         :param calories: Total calories used in an exercise.
@@ -66,8 +67,7 @@ class TCXExercise:
     def trackpoints_to_dict(self) -> list:
         """
         Convert trackpoints to a list of dictionaries.
-        Returns:
-            list: A list of dictionaries containing trackpoint data.
+        :return: list: A list of dictionaries containing trackpoint data.
         """
         trackpoint_dict = []
             

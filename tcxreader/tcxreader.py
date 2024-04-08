@@ -121,7 +121,13 @@ class TCXReader:
             self.__find_hi_lo_avg(lap, only_gps)
         return tcx_exercise
 
-    def trackpoint_parser(self, tcx_point: TCXTrackPoint, trackpoint):
+    def trackpoint_parser(self, tcx_point: TCXTrackPoint, trackpoint:ET.Element):
+        """
+        Parses a trackpoint (ET.Element) from the TCX file.
+        :param tcx_point: TCXTrackPoint object to store the data.
+        :param trackpoint: ET.Element object containing the trackpoint data.
+        :return: None. The data is stored in the TCXTrackPoint object.
+        """
         for trackpoint_data in trackpoint:
             if trackpoint_data.tag == GARMIN_XML_SCHEMA + 'Time':
                 for pat in (
@@ -197,21 +203,43 @@ class TCXReader:
         :return:
         """
         def interpolate(start, end, length):
+            """
+            Interpolates between two values.
+            :param start:
+            :param end:
+            :param length:
+            :return:
+            """
             step = (end - start) / (length + 1)
             type_start = type(start)
             return [type_start(start + step * i) for i in range(1, length + 1)]
 
         # Interpolate for regular attributes
         def interpolate_attribute(attr):
+            """
+            Interpolates for a regular attribute.
+            :param attr:
+            :return:
+            """
             data = [getattr(tp, attr) for tp in trackpoints]
             return __fill_none_with_averages_for_data(data)
 
         # Interpolate for tpx_ext dictionary
         def interpolate_tpx_ext(key):
+            """
+            Interpolates for a tpx_ext key.
+            :param key:
+            :return:
+            """
             data = [tp.tpx_ext.get(key) for tp in trackpoints]
             return __fill_none_with_averages_for_data(data)
 
         def __fill_none_with_averages_for_data(data):
+            """
+            Interpolates by filling None values with averages.
+            :param data:
+            :return:
+            """
             result = []
             i = 0
             while i < len(data):
@@ -257,6 +285,12 @@ class TCXReader:
         return new_trackpoints
 
     def __find_hi_lo_avg(self, tcx: TCXExercise, only_gps: bool) -> TCXExercise:
+        """
+        Finds the highest, lowest and average values for the TCXExercise.
+        :param tcx:
+        :param only_gps:
+        :return:
+        """
         trackpoints = tcx.trackpoints
 
         if only_gps == True:
