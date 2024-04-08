@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tcxreader"
-version = "0.4.9"
+version = "0.4.10"
 description = "tcxreader is a reader for Garmin’s TCX file format. It also works well with missing data!"
 authors = ["Alen Rajšp <alen.rajsp@gmail.com>"]
 license = "MIT"
