@@ -269,6 +269,7 @@ at your own risk!
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/simonpickering"><img src="https://avatars.githubusercontent.com/u/1830341?v=4?s=100" width="100px;" alt="Simon Pickering"/><br /><sub><b>Simon Pickering</b></sub></a><br /><a href="https://github.com/alenrajsp/tcxreader/issues?q=author%3Asimonpickering" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/rwinklerwilkes"><img src="https://avatars.githubusercontent.com/u/2768609?v=4?s=100" width="100px;" alt="Rich Winkler"/><br /><sub><b>Rich Winkler</b></sub></a><br /><a href="https://github.com/alenrajsp/tcxreader/issues?q=author%3Arwinklerwilkes" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ToonElewaut"><img src="https://avatars.githubusercontent.com/u/12350289?v=4?s=100" width="100px;" alt="Toon Elewaut"/><br /><sub><b>Toon Elewaut</b></sub></a><br /><a href="https://github.com/alenrajsp/tcxreader/commits?author=ToonElewaut" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lahovniktadej"><img src="https://avatars.githubusercontent.com/u/57890734?v=4?s=100" width="100px;" alt="Tadej Lahovnik"/><br /><sub><b>Tadej Lahovnik</b></sub></a><br /><a href="https://github.com/alenrajsp/tcxreader/commits?author=lahovniktadej" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
