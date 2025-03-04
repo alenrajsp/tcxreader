@@ -1,24 +1,62 @@
-<div width="200" style="background-color: white; width: 200px">
- <img width="200" style="margin-bottom:-8px" src="https://raw.githubusercontent.com/alenrajsp/tcxreader/main/.github/logo/logo-white-background.png">
-</div>
+<p align="center">
+    <img width="200" style="margin-bottom:-8px" src="https://raw.githubusercontent.com/alenrajsp/tcxreader/main/.github/logo/logo-white-background.png">
+</p>
 
-**tcxreader** is a reader for Garmin's TCX file format. It also works well with missing data!
+<h2 align="center">
+    Reader for Garmin's TCX file format
+</h2>
 
----
+<p align="center">
+    <a href="https://pypi.python.org/pypi/tcxreader">
+        <img alt="PyPI Version" src="https://img.shields.io/pypi/v/tcxreader.svg" />
+    </a>
+    <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/tcxreader.svg" />
+    <img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/tcxreader.svg" />
+    <a href="https://pepy.tech/project/tcxreader">
+        <img alt="Downloads" src="https://pepy.tech/badge/tcxreader" />
+    </a>
+    <a href="https://github.com/alenrajsp/tcxreader/actions/workflows/test.yml">
+        <img alt="tcxreader" src="https://github.com/alenrajsp/tcxreader/actions/workflows/test.yml/badge.svg">
+    </a>
+</p>
 
-[![PyPI Version](https://img.shields.io/pypi/v/tcxreader.svg)](https://pypi.python.org/pypi/tcxreader)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/tcxreader.svg)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/tcxreader.svg)
-[![Downloads](https://pepy.tech/badge/tcxreader)](https://pepy.tech/project/tcxreader)
-![GitHub repo size](https://img.shields.io/github/repo-size/alenrajsp/tcxreader?style=flat-square)
-[![GitHub license](https://img.shields.io/github/license/alenrajsp/tcxreader.svg)](https://github.com/alenrajsp/tcxreader/blob/master/LICENSE)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/alenrajsp/tcxreader.svg)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/alenrajsp/tcxreader.svg)](http://isitmaintained.com/project/alenrajsp/tcxreader "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/alenrajsp/tcxreader.svg)](http://isitmaintained.com/project/alenrajsp/tcxreader "Percentage of issues still open")
-[![All Contributors](https://img.shields.io/github/all-contributors/alenrajsp/tcxreader?color=ee8449&style=flat-square)](#contributors)
-[![DOI](https://zenodo.org/badge/317671425.svg)](https://zenodo.org/doi/10.5281/zenodo.10940281)
+<p align="center">
+    <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/alenrajsp/tcxreader" />
+    <a href="https://github.com/alenrajsp/tcxreader/blob/master/LICENSE">
+        <img alt="GitHub license" src="https://img.shields.io/github/license/alenrajsp/tcxreader.svg" />
+    </a>
+    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/alenrajsp/tcxreader.svg" />
+    <a href='http://isitmaintained.com/project/alenrajsp/tcxreader "Average time to resolve an issue"'>
+        <img alt="Average time to resolve an issue" src="http://isitmaintained.com/badge/resolution/alenrajsp/tcxreader.svg" />
+    </a>
+    <a href='http://isitmaintained.com/project/alenrajsp/tcxreader "Percentage of issues still open"'>
+        <img alt="Percentage of issues still open" src="http://isitmaintained.com/badge/open/alenrajsp/tcxreader.svg" />
+    </a>
+    <a href="#-contributors">
+        <img alt="All Contributors" src="https://img.shields.io/github/all-contributors/alenrajsp/tcxreader?color=ee8449" />
+    </a>
+</p>
 
-## Objective
+<p align="center">
+    <a href="https://zenodo.org/doi/10.5281/zenodo.10940281">
+        <img alt="DOI" src="https://zenodo.org/badge/317671425.svg" />
+    </a>
+</p>
+
+<p align="center">
+    <a href="#-objective">🎯 Objective</a> •
+    <a href="#-features">✨ Features</a> •
+    <a href="#-installation">📦 Installation</a> •
+    <a href="#-usage">🚀 Usage</a> •
+    <a href="#-classes-explanation">🔍 Classes explanation</a> •
+    <a href="#-missing-data-handling">🚨 Missing data handling</a> •
+    <a href="#-datasets">💾 Datasets</a> •
+    <a href="#-related-packagesframeworks">🔗 Related packages/frameworks</a> •
+    <a href="#-license">🔑 License</a> •
+    <a href="#-contributors">🫂 Contributors</a>
+</p>
+
+## 🎯 Objective
 
 This is a simple TCX reader which can read Garmin TCX file extension files.  The following data is currently parsed: longitude,
 latitude, elevation, time, distance, hr_value, cadence, watts, TPX_speed (extension). The following statistics are
@@ -29,17 +67,17 @@ GitHub requests appreciated.
 [pypi](https://pypi.org/project/tcxreader/)
 [github](https://github.com/alenrajsp/tcxreader)
 
-## Features
+## ✨ Features
 
 Allows parsing / reading of TCX files.
 
-## Installation
+## 📦 Installation
 
 ```
 pip install tcxreader
 ```
 
-## Example
+## 🚀 Usage
 
 An example on how to use the package is shown below.
 
@@ -91,7 +129,7 @@ trackpoints = {list: 486} [TCXTrackpoint]
      tpx_ext = {dict: 2} {'Speed': 0.7459999918937683, 'RunCadence': 58}
 """
 ```
-## Classes explanation
+## 🔍 Classes explanation
 
 Below figure explains the classes of **tcxreader** and the data they contain.
 
@@ -176,7 +214,7 @@ All tags are recorded in the **TCXLap** **lx_ext** dictionary
  <img width="100%" style="margin-bottom:-8px" src="https://raw.githubusercontent.com/alenrajsp/tcxreader/7c9af6dc88f9d83a8c6751b454f118220ecfd9a1/.github/images/data-explanation.svg">
 </div>
 
-## Missing data handling
+## 🚨 Missing data handling
 Due to the nature of the TCX file format, some data may be missing. The **tcxreader** can handle this in two ways:
 1) If data is missing at a TCX point it is set to **None**. (*default*)
     - tcx_reader.read(file_location) (*default*)
@@ -188,16 +226,11 @@ Due to the nature of the TCX file format, some data may be missing. The **tcxrea
    
 This behavior can be set in **TCXReader.read()** method by the **null_value_handling** parameter, where either **int** value or **NullValueHandling** enum can be passed.
 
-## Datasets
+## 💾 Datasets
 
 Datasets available and used in the examples on the following links: [DATASET1](http://iztok-jr-fister.eu/static/publications/Sport5.zip), [DATASET2](http://iztok-jr-fister.eu/static/css/datasets/Sport.zip), [DATASET3](https://github.com/firefly-cpp/tcx-test-files).
 
-## License
-
-This package is distributed under the MIT License. This license can be found online
-at [http://www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT).
-
-## Related packages/frameworks
+## 🔗 Related packages/frameworks
 
 [1] [sport-activities-features: A minimalistic toolbox for extracting features from sports activity files written in Python](https://github.com/firefly-cpp/sport-activities-features)
 
@@ -205,12 +238,17 @@ at [http://www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/M
 
 [3] [TCXReader.jl: Julia package designed for parsing TCX files](https://github.com/firefly-cpp/TCXReader.jl)
 
+## 🔑 License
+
+This package is distributed under the MIT License. This license can be found online
+at [http://www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT).
+
 ## Disclaimer
 
 This framework is provided as-is, and there are no guarantees that it fits your purposes or that it is bug-free. Use it
 at your own risk!
 
-## Contributors
+## 🫂 Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
