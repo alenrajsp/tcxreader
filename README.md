@@ -44,7 +44,7 @@ pip install tcxreader
 An example on how to use the package is shown below.
 
 ```python
-from tcxreader.tcxreader import TCXReader, TCXTrackPoint
+from tcxreader.tcxreader import TCXReader, TCXExercise
 
 tcx_reader = TCXReader()
 file_location = 'example_data/cross-country-skiing_activity_1.tcx'
